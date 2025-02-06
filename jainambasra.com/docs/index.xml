@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Jainam Basra</title><link>https://jainambasra.netlify.app/</link><description>Recent content on Jainam Basra</description><generator>Hugo -- 0.143.1</generator><language>en-us</language><lastBuildDate>Thu, 06 Feb 2025 11:30:03 +0000</lastBuildDate><atom:link href="https://jainambasra.netlify.app/index.xml" rel="self" type="application/rss+xml"/><item><title>MS Cybersecurity: My Journey Through Graduate Studies and Beyond</title><link>https://jainambasra.netlify.app/chronicle/lifeabroadpost1/</link><pubDate>Thu, 06 Feb 2025 11:30:03 +0000</pubDate><guid>https://jainambasra.netlify.app/chronicle/lifeabroadpost1/</guid><description>Podcast: In Discussion with Saman Fatima about my study abroad experience.</description></item><item><title>Breaking Down Prompt Injection Attacks: A Fun Look at Securing LLMs!</title><link>https://jainambasra.netlify.app/posts/myfirstpost/</link><pubDate>Thu, 06 Feb 2025 00:00:00 +0000</pubDate><guid>https://jainambasra.netlify.app/posts/myfirstpost/</guid><description>Prompt injection vulnerabilities can be sneaky, but fear not! Let&amp;#39;s break down what they are, why they matter, and how we can build safer AI systems in a fun and engaging way.</description></item><item><title/><link>https://jainambasra.netlify.app/aboutme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jainambasra.netlify.app/aboutme/</guid><description>&lt;h1 id="about-me">About Me&lt;/h1>
+&lt;p>👋 &lt;strong>Hey there! I&amp;rsquo;m Jainam Basra&lt;/strong> a cybersecurity professional passionate about securing systems, breaking into applications (ethically, of course!), and making the digital world a safer place.&lt;/p>
+&lt;h2 id="my-journey-into-cybersecurity">&lt;strong>My Journey into Cybersecurity&lt;/strong>&lt;/h2>
+&lt;p>My journey into cybersecurity has been driven by &lt;strong>curiosity, persistence, and a love for problem-solving&lt;/strong>. With a background in &lt;strong>penetration testing, risk management, and cloud security&lt;/strong>, I specialize in:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Offensive Security &amp;amp; Red Teaming&lt;/strong> – Identifying and mitigating security vulnerabilities before adversaries can exploit them.&lt;/li>
+&lt;li>&lt;strong>Threat Modeling &amp;amp; Risk Analysis&lt;/strong> – Evaluating security risks and helping organizations strengthen their defenses.&lt;/li>
+&lt;li>&lt;strong>Cloud &amp;amp; Application Security&lt;/strong> – Ensuring secure architecture and compliance in cloud environments.&lt;/li>
+&lt;/ul>
+&lt;p>Currently, I am expanding my expertise in &lt;strong>AI Security &amp;amp; Red Teaming for LLMs&lt;/strong>, exploring how adversarial techniques can help improve the robustness of AI applications.&lt;/p></description></item><item><title/><link>https://jainambasra.netlify.app/resume/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jainambasra.netlify.app/resume/</guid><description>&lt;h2 id="summary">Summary&lt;/h2>
+&lt;p>Visionary &lt;strong>cybersecurity professional&lt;/strong> with expertise in &lt;strong>penetration testing, risk management, and cloud security&lt;/strong>.&lt;br>
+Passionate about &lt;strong>threat modeling, risk assessments, and compliance&lt;/strong> with hands-on experience in &lt;strong>network security, SIEM deployment, and vulnerability assessments&lt;/strong>.&lt;/p>
+&lt;p>&lt;strong>Key Focus Areas:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Generative AI Pentesting&lt;/li>
+&lt;li>AI/LLM Security Assessment&lt;/li>
+&lt;li>Security Strategy &amp;amp; Risk Management&lt;/li>
+&lt;li>Incident Response &amp;amp; Threat Intelligence&lt;/li>
+&lt;li>Cloud &amp;amp; Infrastructure Security&lt;/li>
+&lt;li>Compliance &amp;amp; Regulatory Frameworks&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="core-competencies">Core Competencies&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>Security Assessments:&lt;/strong> Threat modeling, risk analysis, compliance management&lt;/li>
+&lt;li>&lt;strong>Cloud Security:&lt;/strong> AWS security, IAM, Kubernetes security&lt;/li>
+&lt;li>&lt;strong>Offensive Security:&lt;/strong> Red teaming, penetration testing, ethical hacking&lt;/li>
+&lt;li>&lt;strong>Incident Response:&lt;/strong> SIEM, IDS/IPS, phishing detection &amp;amp; mitigation&lt;/li>
+&lt;li>&lt;strong>Project Management:&lt;/strong> Agile methodologies, risk management, security roadmaps&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="technical-skills">Technical Skills&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Category&lt;/th>
+&lt;th>Tools &amp;amp; Technologies&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;strong>Security &amp;amp; Monitoring&lt;/strong>&lt;/td>
+&lt;td>Nessus, Wireshark, Metasploit, Burp Suite, MITRE ATT&amp;amp;CK&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Operating Systems&lt;/strong>&lt;/td>
+&lt;td>Windows, Linux, MacOS, Active Directory&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Databases &amp;amp; Cloud&lt;/strong>&lt;/td>
+&lt;td>AWS, MySQL, MongoDB, DynamoDB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Penetration Testing&lt;/strong>&lt;/td>
+&lt;td>Network &amp;amp; Web App Security Testing, OWASP ZAP, sqlmap&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Software &amp;amp; Tools&lt;/strong>&lt;/td>
+&lt;td>Nuclei, MobSF, Frida, Fiddle&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Project Management&lt;/strong>&lt;/td>
+&lt;td>JIRA, Trello, Agile/Scrum, Gantt Charts&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;hr>
+&lt;h2 id="work-experience">Work Experience&lt;/h2>
+&lt;h3 id="keelworks-foundation---oak-harbor-wa">&lt;strong>Keelworks Foundation&lt;/strong> - &lt;em>Oak Harbor, WA&lt;/em>&lt;/h3>
+&lt;p>📅 &lt;strong>Project Manager / Cybersecurity&lt;/strong> (Sept 2024 - Present)&lt;/p></description></item></channel></rss>
