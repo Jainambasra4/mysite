@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Breaking Down Prompt Injection Attacks: A Fun Look at Securing LLMs! | Jainam Basra</title>
+<meta name="keywords" content="LLM Security, Prompt Injection, Cybersecurity, GenAI, AI Security">
+<meta name="description" content="Prompt injection vulnerabilities can be sneaky, but fear not! Let&#39;s break down what they are, why they matter, and how we can build safer AI systems in a fun and engaging way.">
+<meta name="author" content="Jainam Basra">
+<link rel="canonical" href="http://localhost:1313/posts/myfirstpost/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9de45e225101e4f99701d2b68fc6b8a1ef6027928be6391fa15bf7f56326c909.css" integrity="sha256-neReIlEB5PmXAdK2j8a4oe9gJ5KL5jkfoVv39WMmyQk=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/myfirstpost/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="http://localhost:1313/posts/myfirstpost/">
+  <meta property="og:site_name" content="Jainam Basra">
+  <meta property="og:title" content="Breaking Down Prompt Injection Attacks: A Fun Look at Securing LLMs!">
+  <meta property="og:description" content="Prompt injection vulnerabilities can be sneaky, but fear not! Let&#39;s break down what they are, why they matter, and how we can build safer AI systems in a fun and engaging way.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-02-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-06T00:00:00+00:00">
+    <meta property="article:tag" content="LLM Security">
+    <meta property="article:tag" content="Prompt Injection">
+    <meta property="article:tag" content="Cybersecurity">
+    <meta property="article:tag" content="GenAI">
+    <meta property="article:tag" content="AI Security">
+    <meta property="og:image" content="http://localhost:1313/prompt/prompt1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/prompt/prompt1.jpg">
+<meta name="twitter:title" content="Breaking Down Prompt Injection Attacks: A Fun Look at Securing LLMs!">
+<meta name="twitter:description" content="Prompt injection vulnerabilities can be sneaky, but fear not! Let&#39;s break down what they are, why they matter, and how we can build safer AI systems in a fun and engaging way.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Breaking Down Prompt Injection Attacks: A Fun Look at Securing LLMs!",
+      "item": "http://localhost:1313/posts/myfirstpost/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Breaking Down Prompt Injection Attacks: A Fun Look at Securing LLMs!",
+  "name": "Breaking Down Prompt Injection Attacks: A Fun Look at Securing LLMs!",
+  "description": "Prompt injection vulnerabilities can be sneaky, but fear not! Let's break down what they are, why they matter, and how we can build safer AI systems in a fun and engaging way.",
+  "keywords": [
+    "LLM Security", "Prompt Injection", "Cybersecurity", "GenAI", "AI Security"
+  ],
+  "articleBody": "The AI Trickster Problem: Why Prompt Injection is a Big Deal Have you ever tried giving an AI a prompt that flips its logic on its head? Maybe you’ve seen people jailbreak AI chatbots, making them say things they weren’t programmed to? That, my friends, is prompt injection a clever trick to make an AI model do things it shouldn’t! 🚀\nBut let’s be real—this isn’t just fun and games. Prompt injection poses a real security risk in AI applications, affecting everything from chatbots to enterprise systems. The challenge? AI models don’t always know when they’re being manipulated, and attackers can sneak in commands without breaking a sweat.\nSo, what’s the deal with prompt injection? Let’s break it down.\nWhat is Prompt Injection? Prompt injection happens when a user’s input alters an AI’s behavior in unintended ways. It’s like whispering a secret command to the AI that flips the script, making it generate unexpected responses.\nAnd guess what? The trick doesn’t even have to be visible to humans the model just needs to parse and interpret the hidden instruction. This can lead to AI generating harmful content, leaking sensitive data, or even making unauthorized decisions. Yikes! 😲\nDirect vs. Indirect Prompt Injection Direct Prompt Injection: When you directly manipulate the AI using crafted prompts. Think of it like hacking a chatbot by feeding it clever instructions. Indirect Prompt Injection: This happens when AI models pull data from external sources (like websites, documents, or emails) that contain hidden instructions, leading to unintended consequences. And with multimodal AI (which can process text, images, and audio together), attackers can hide instructions inside images yep, it’s like putting secret messages in an AI-friendly invisible ink! 🕵️‍♂️\nWhy Should We Care? A successful prompt injection attack can lead to:\nLeaking sensitive information (Oops, did the AI just reveal your API keys? 😬) Bypassing security controls (Yes, attackers can trick AI into granting unauthorized access!) Manipulating AI-generated content (Misinformation, bias, and skewed results) Triggering unintended actions (Imagine an AI assistant approving transactions it shouldn’t!) The bottom line? If AI systems are going to be trusted in cybersecurity, healthcare, finance, and beyond, we need to stay ahead of prompt injection tricks! 🛡️\nHow Do We Stop This AI Mischief? 🔥 The Cool Security Fixes While fully preventing prompt injection is still a work in progress, here are some fun ways to make AI systems more resilient:\n📌 Give AI Clear Rules to Follow\nDefine its role, set strict boundaries, and make sure it ignores sneaky user inputs trying to rewrite its core instructions. 📝 Set Output Rules\nAI should stick to structured responses and provide sources for verification. No wild hallucinations allowed! 🚀 🚦 Filter Inputs \u0026 Outputs\nThink of this like spam filters but for AI! Scan for malicious content, and stop AI from generating harmful responses. 🔒 Restrict AI Privileges\nDon’t give AI free rein over everything! Limit what it can do to avoid accidental disasters. 🧑‍💻 Add Human Oversight for Critical Tasks\nAI making major decisions? Get a human in the loop before anything goes live. 🚧 Separate External Data\nClearly label and isolate user-generated content to prevent AI from misinterpreting external inputs. 🎭 Test AI Like an Attacker Would\nSimulate real-world attacks, try to break your AI (ethically!), and patch the vulnerabilities. Coming Up Next: Hands-on Labs \u0026 Walkthrough! 🔥 Now that you know what Prompt Injection is and why it’s a security concern, let’s take it to the next level! In my next post, I’ll be sharing hands-on labs and a complete walkthrough to demonstrate how these attacks work in real-time! 🛠️💻\nAttempt 1 Attempt 2 Stay tuned it’s going to be practical, hands-on, and full of fun hacking challenges! 🚀\n🔖 #AIsecurity #PromptInjection #Cybersecurity #LLMSecurity #AIhacking #GenAI\n",
+  "wordCount" : "626",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/prompt/prompt1.jpg","datePublished": "2025-02-06T00:00:00Z",
+  "dateModified": "2025-02-06T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Jainam Basra"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/posts/myfirstpost/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jainam Basra",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header sticky-header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Jainam Basra (Alt + H)">Jainam Basra</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blogs">
+                    <span>Blogs</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/aboutme/" title="About Me">
+                    <span>About Me</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/resume/" title="Resume">
+                    <span>Resume</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/chronicle/" title="Life Abroad">
+                    <span>Life Abroad</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header><main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Breaking Down Prompt Injection Attacks: A Fun Look at Securing LLMs!
+    </h1>
+    <div class="post-description">
+      Prompt injection vulnerabilities can be sneaky, but fear not! Let&#39;s break down what they are, why they matter, and how we can build safer AI systems in a fun and engaging way.
+    </div>
+    <div class="post-meta"><span title='2025-02-06 00:00:00 +0000 UTC'>February 6, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;626 words&nbsp;·&nbsp;Jainam Basra
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="eager" src="http://localhost:1313/prompt/prompt1.jpg" alt="Understanding and Securing AI from Prompt Injection Attacks">
+        <p>Understanding and Securing AI from Prompt Injection Attacks</p>
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#the-ai-trickster-problem-why-prompt-injection-is-a-big-deal" aria-label="The AI Trickster Problem: Why Prompt Injection is a Big Deal">The AI Trickster Problem: Why Prompt Injection is a Big Deal</a></li>
+                <li>
+                    <a href="#what-is-prompt-injection" aria-label="What is Prompt Injection?">What is Prompt Injection?</a><ul>
+                        
+                <li>
+                    <a href="#direct-vs-indirect-prompt-injection" aria-label="Direct vs. Indirect Prompt Injection">Direct vs. Indirect Prompt Injection</a></li></ul>
+                </li>
+                <li>
+                    <a href="#why-should-we-care" aria-label="Why Should We Care?">Why Should We Care?</a></li>
+                <li>
+                    <a href="#how-do-we-stop-this-ai-mischief" aria-label="How Do We Stop This AI Mischief?">How Do We Stop This AI Mischief?</a><ul>
+                        
+                <li>
+                    <a href="#-the-cool-security-fixes" aria-label="🔥 The Cool Security Fixes">🔥 The Cool Security Fixes</a></li></ul>
+                </li>
+                <li>
+                    <a href="#coming-up-next-hands-on-labs--walkthrough-" aria-label="Coming Up Next: Hands-on Labs &amp; Walkthrough! 🔥">Coming Up Next: Hands-on Labs &amp; Walkthrough! 🔥</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="the-ai-trickster-problem-why-prompt-injection-is-a-big-deal"><strong>The AI Trickster Problem: Why Prompt Injection is a Big Deal</strong><a hidden class="anchor" aria-hidden="true" href="#the-ai-trickster-problem-why-prompt-injection-is-a-big-deal">#</a></h2>
+<p>Have you ever tried giving an AI a prompt that flips its logic on its head? Maybe you&rsquo;ve seen people jailbreak AI chatbots, making them say things they weren’t programmed to? That, my friends, is <strong>prompt injection</strong> a clever trick to make an AI model do things it shouldn’t! 🚀</p>
+<p>But let&rsquo;s be real—this isn’t just fun and games. Prompt injection <strong>poses a real security risk</strong> in AI applications, affecting everything from chatbots to enterprise systems. The challenge? AI models don’t always know when they&rsquo;re being manipulated, and attackers can sneak in commands without breaking a sweat.</p>
+<p>So, what’s the deal with prompt injection? Let’s break it down.</p>
+<hr>
+<h2 id="what-is-prompt-injection"><strong>What is Prompt Injection?</strong><a hidden class="anchor" aria-hidden="true" href="#what-is-prompt-injection">#</a></h2>
+<p>Prompt injection happens when <strong>a user’s input alters an AI’s behavior in unintended ways</strong>. It’s like whispering a secret command to the AI that flips the script, making it generate unexpected responses.</p>
+<p>And guess what? The trick <strong>doesn&rsquo;t even have to be visible to humans</strong> the model just needs to <strong>parse and interpret</strong> the hidden instruction. This can lead to AI generating harmful content, leaking sensitive data, or even making unauthorized decisions. Yikes! 😲</p>
+<h3 id="direct-vs-indirect-prompt-injection"><strong>Direct vs. Indirect Prompt Injection</strong><a hidden class="anchor" aria-hidden="true" href="#direct-vs-indirect-prompt-injection">#</a></h3>
+<ul>
+<li><strong>Direct Prompt Injection</strong>: When you <em>directly</em> manipulate the AI using crafted prompts. Think of it like hacking a chatbot by feeding it clever instructions.</li>
+<li><strong>Indirect Prompt Injection</strong>: This happens when AI models pull data from external sources (like websites, documents, or emails) that contain hidden instructions, leading to unintended consequences.</li>
+</ul>
+<p>And with <strong>multimodal AI</strong> (which can process text, images, and audio together), attackers can <strong>hide instructions inside images</strong> yep, it’s like putting secret messages in an AI-friendly invisible ink! 🕵️‍♂️</p>
+<hr>
+<h2 id="why-should-we-care"><strong>Why Should We Care?</strong><a hidden class="anchor" aria-hidden="true" href="#why-should-we-care">#</a></h2>
+<p>A successful prompt injection attack can lead to:</p>
+<ul>
+<li><strong>Leaking sensitive information</strong> (Oops, did the AI just reveal your API keys? 😬)</li>
+<li><strong>Bypassing security controls</strong> (Yes, attackers can trick AI into granting unauthorized access!)</li>
+<li><strong>Manipulating AI-generated content</strong> (Misinformation, bias, and skewed results)</li>
+<li><strong>Triggering unintended actions</strong> (Imagine an AI assistant approving transactions it shouldn’t!)</li>
+</ul>
+<p>The bottom line? If AI systems are going to be <strong>trusted in cybersecurity, healthcare, finance, and beyond</strong>, we need to <strong>stay ahead of prompt injection tricks!</strong> 🛡️</p>
+<hr>
+<h2 id="how-do-we-stop-this-ai-mischief"><strong>How Do We Stop This AI Mischief?</strong><a hidden class="anchor" aria-hidden="true" href="#how-do-we-stop-this-ai-mischief">#</a></h2>
+<h3 id="-the-cool-security-fixes">🔥 <strong>The Cool Security Fixes</strong><a hidden class="anchor" aria-hidden="true" href="#-the-cool-security-fixes">#</a></h3>
+<p>While <strong>fully preventing</strong> prompt injection is still a work in progress, here are some fun ways to make AI systems <strong>more resilient</strong>:</p>
+<ol>
+<li>
+<p><strong>📌 Give AI Clear Rules to Follow</strong></p>
+<ul>
+<li>Define its role, set <strong>strict boundaries</strong>, and make sure it <em>ignores</em> sneaky user inputs trying to rewrite its core instructions.</li>
+</ul>
+</li>
+<li>
+<p><strong>📝 Set Output Rules</strong></p>
+<ul>
+<li>AI should stick to <strong>structured responses</strong> and <strong>provide sources</strong> for verification. No wild hallucinations allowed! 🚀</li>
+</ul>
+</li>
+<li>
+<p><strong>🚦 Filter Inputs &amp; Outputs</strong></p>
+<ul>
+<li>Think of this like spam filters but for AI! Scan for <strong>malicious content</strong>, and <strong>stop AI from generating harmful responses</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>🔒 Restrict AI Privileges</strong></p>
+<ul>
+<li>Don’t give AI free rein over everything! Limit what it can do <strong>to avoid accidental disasters</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>🧑‍💻 Add Human Oversight for Critical Tasks</strong></p>
+<ul>
+<li>AI making major decisions? <strong>Get a human in the loop</strong> before anything goes live.</li>
+</ul>
+</li>
+<li>
+<p><strong>🚧 Separate External Data</strong></p>
+<ul>
+<li>Clearly label and <strong>isolate user-generated content</strong> to prevent AI from misinterpreting external inputs.</li>
+</ul>
+</li>
+<li>
+<p><strong>🎭 Test AI Like an Attacker Would</strong></p>
+<ul>
+<li>Simulate <strong>real-world attacks</strong>, try to break your AI (ethically!), and patch the vulnerabilities.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="coming-up-next-hands-on-labs--walkthrough-"><strong>Coming Up Next: Hands-on Labs &amp; Walkthrough! 🔥</strong><a hidden class="anchor" aria-hidden="true" href="#coming-up-next-hands-on-labs--walkthrough-">#</a></h2>
+<p>Now that you know what <strong>Prompt Injection</strong> is and why it&rsquo;s a security concern, let&rsquo;s take it to the next level! <strong>In my next post, I&rsquo;ll be sharing hands-on labs and a complete walkthrough to demonstrate how these attacks work in real-time!</strong> 🛠️💻</p>
+<p><strong>Attempt 1</strong>
+<img alt="Prompt Injection in AI" loading="lazy" src="/prompt/prompt2.jpg"></p>
+<p><strong>Attempt 2</strong>
+<img alt="Prompt Injection in AI" loading="lazy" src="/prompt/prompt3.jpg"></p>
+<p>Stay tuned it&rsquo;s going to be <strong>practical, hands-on, and full of fun hacking challenges!</strong> 🚀</p>
+<p>🔖 <strong>#AIsecurity #PromptInjection #Cybersecurity #LLMSecurity #AIhacking #GenAI</strong></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/llm-security/">LLM Security</a></li>
+      <li><a href="http://localhost:1313/tags/prompt-injection/">Prompt Injection</a></li>
+      <li><a href="http://localhost:1313/tags/cybersecurity/">Cybersecurity</a></li>
+      <li><a href="http://localhost:1313/tags/genai/">GenAI</a></li>
+      <li><a href="http://localhost:1313/tags/ai-security/">AI Security</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Jainam Basra</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

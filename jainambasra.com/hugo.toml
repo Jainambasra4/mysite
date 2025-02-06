@@ -1,0 +1,81 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'Jainam Basra'
+theme = "PaperMod"
+
+[menu]
+
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "Blogs"
+    name = "Blogs"
+    url = "/posts/"
+    weight = 2
+
+ [[menu.main]]
+    identifier = "aboutme"
+    name = "About Me"
+    url = "/aboutme/"
+    weight = 3   
+ 
+  [[menu.main]]
+    identifier = "resume"
+    name = "Resume"
+    url = "/resume/"
+    weight = 4
+  
+  [[menu.main]]
+    identifier = "lifeabroad"
+    name = "Life Abroad"
+    url = "/chronicle/"
+    weight = 5
+
+[params]
+  # Theme settings
+  showToc = true
+  TocOpen = false
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  hideMeta = false
+
+  # Enhanced SEO
+  env = "production"
+
+  # Home Page
+  [params.profileMode]
+    enabled = true
+    title = "Jainam Basra"
+    subtitle = "Hi 👋 I'm Jainam, a cybersecurity professional passionate about securing digital landscapes. With expertise in penetration testing, cloud security, and risk management, I help organizations strengthen their security posture. I have experience leading security assessments, deploying cutting-edge security technologies, and mitigating threats effectively. Outside of tech, you can find me cooking up delicious recipes, hitting the gym, playing tennis, enjoying karaoke singing, or playing the flute. Let's connect and make cybersecurity stronger together!"
+    imageUrl = "images/profile.jpg"
+    imageWidth = 220
+    imageHeight = 220
+    # [[params.profileMode.buttons]]
+    #   name = "Resume"
+    #   url = ""
+
+  # List View
+  hideDescriptionInList = false
+
+  # Cover image for posts
+  [params.cover]
+    hiddenInList = false  # Hide on list pages and home
+    hiddenInSingle = false  # Hide on single page
+
+  # Social Icons
+  
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/jainam-basra"
+
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:jainambasra4@gmail.com"
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/jainambasra4"
