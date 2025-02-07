@@ -37,7 +37,7 @@ But this isn’t just a Baltimore thing it’s **true for many places worldwide*
 - **Be aware** of your surroundings, especially at night.
 - If you’re ever in doubt, **Uber/Lyft is your friend**.  
 
-Follow these, and you’ll be just fine. 👍  
+### Follow these, and you’ll be just fine. 👍  
 
 ---
 
@@ -54,5 +54,3 @@ For **personalized advice** or if you have any questions, feel free to **reach o
 I’d be happy to share more insights about **student life in Baltimore**. 🚀  
 
 ---
-
-
