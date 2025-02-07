@@ -1,11 +1,18 @@
 ---
 title: "MS Cybersecurity: My Journey from India to the U.S. 🎓🔐"
 description: "A deep dive into my experience as an international student studying cybersecurity at UMBC, featured in Saman Fatima's podcast 'Off the Record with Saman - Student Abroad'."
-dateString: Feb 2025
+date: 2025-02-07T11:30:03+00:00
 cover: "cover-image.jpg"
 weight: 101
 cover:
     image: "/chronicle/podcast.jpg"
+hideSummary: false
+searchHidden: true
+ShowReadingTime: true
+ShowBreadCrumbs: true
+ShowPostNavLinks: true
+ShowWordCount: true
+ShowRssButtonInSectionTermList: true
 ---
 
 # 🎙️ Mastering Cybersecurity: My Journey from India to the U.S. 🎓🔐  
