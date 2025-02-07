@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on Jainam Basra</title>
-    <link>https://jainambasra.netlify.app/post/</link>
+    <link>https://jainambasra.com/post/</link>
     <description>Recent content in Posts on Jainam Basra</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 07 Feb 2025 11:30:03 +0000</lastBuildDate>
-    <atom:link href="https://jainambasra.netlify.app/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://jainambasra.com/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🔴 Hacking AI: Tricking the Model into Revealing Secrets! The Art of Prompt Injection (OWASP LLM Top 10)</title>
-      <link>https://jainambasra.netlify.app/post/post1/</link>
+      <link>https://jainambasra.com/post/post1/</link>
       <pubDate>Fri, 07 Feb 2025 11:30:03 +0000</pubDate>
-      <guid>https://jainambasra.netlify.app/post/post1/</guid>
+      <guid>https://jainambasra.com/post/post1/</guid>
       <description>Welcome to my new series on AI LLM Red Teaming! Today, let&amp;#39;s talk about Prompt Injection—the cybersecurity nightmare that makes LLMs spill secrets, break rules, and sometimes, even gaslight you.</description>
     </item>
   </channel>
