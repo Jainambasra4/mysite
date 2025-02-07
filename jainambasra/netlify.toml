@@ -1,7 +1,5 @@
 [build.environment]
 HUGO_VERSION = "0.143.1"
-NODE_VERSION = "22"
-TZ = "America/Los_Angeles"
 
 [build]
 publish = "public"
