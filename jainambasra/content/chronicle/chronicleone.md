@@ -2,22 +2,21 @@
 title: "MS Cybersecurity: My Journey from India to the U.S. 🎓🔐"
 description: "A deep dive into my experience as an international student studying cybersecurity at UMBC, featured in Saman Fatima's podcast 'Off the Record with Saman - Student Abroad'."
 date: 2025-02-07T11:30:03+00:00
-cover: "cover-image.jpg"
 weight: 101
 cover:
-    image: "/chronicle/podcast.jpg"
+  image: "/chronicle/podcast.jpg"
 hideSummary: false
 searchHidden: true
 ShowReadingTime: true
 ShowBreadCrumbs: true
-ShowPostNavLinks: true
+ShowPostNavLinks: false
 ShowWordCount: true
 ShowRssButtonInSectionTermList: true
 ---
 
 # 🎙️ Mastering Cybersecurity: My Journey from India to the U.S. 🎓🔐  
 
-> *"Cybersecurity is not about technology, it’s about humans who misues technology."*  
+> *"Cybersecurity is not about technology; it’s about humans who misuse technology."*  
 
 ## 🎧 Featured on *Off the Record with Saman - Student Abroad*  
 
@@ -35,7 +34,7 @@ In this episode, we dive into:
 
 ## 🚀 The Cybersecurity Journey  
 
-Back in the day, **I had no idea that a simple curiosity about hacking would turn into a full-fledged career.** 🤯 It all started when a friend challenged me in 10th grade, claiming he could hack my **Facebook account** (with my consent, of course!).  
+Back in the day, **I had no idea that a simple curiosity about hacking would turn into a full-fledged career.** 🤯 It all started when a friend challenged me in **10th grade**, claiming he could hack my **Facebook account** (with my consent, of course!).  
 
 💡 To my shock, **he actually did it!** That moment sparked my **deep curiosity for cybersecurity.** From Googling *"how to hack social media accounts"* (yes, we all started somewhere!) to learning about **phishing, OSINT, and social engineering,** I was hooked.  
 
