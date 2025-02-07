@@ -1,66 +1,112 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Jainam Basra</title><link>https://235c0f1d.mysite-7nr.pages.dev/</link><description>Recent content on Jainam Basra</description><generator>Hugo -- 0.143.1</generator><language>en-us</language><lastBuildDate>Fri, 07 Feb 2025 11:30:03 +0000</lastBuildDate><atom:link href="https://235c0f1d.mysite-7nr.pages.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>MS Cybersecurity: My Journey from India to the U.S. 🎓🔐</title><link>https://235c0f1d.mysite-7nr.pages.dev/chronicle/chronicleone/</link><pubDate>Fri, 07 Feb 2025 11:30:03 +0000</pubDate><guid>https://235c0f1d.mysite-7nr.pages.dev/chronicle/chronicleone/</guid><description>A deep dive into my experience as an international student studying cybersecurity at UMBC, featured in Saman Fatima&amp;#39;s podcast &amp;#39;Off the Record with Saman - Student Abroad&amp;#39;.</description></item><item><title>🔴 Hacking AI: Tricking the Model into Revealing Secrets! The Art of Prompt Injection (OWASP LLM Top 10)</title><link>https://235c0f1d.mysite-7nr.pages.dev/post/post1/</link><pubDate>Fri, 07 Feb 2025 11:30:03 +0000</pubDate><guid>https://235c0f1d.mysite-7nr.pages.dev/post/post1/</guid><description>Welcome to my new series on AI LLM Red Teaming! Today, let&amp;#39;s talk about Prompt Injection—the cybersecurity nightmare that makes LLMs spill secrets, break rules, and sometimes, even gaslight you.</description></item><item><title>Do you plan to pursue MS at UMBC, but worried if Baltimore is safe or not? 🎓🔐</title><link>https://235c0f1d.mysite-7nr.pages.dev/chronicle/chronicletwo/</link><pubDate>Fri, 07 Feb 2025 11:30:03 +0000</pubDate><guid>https://235c0f1d.mysite-7nr.pages.dev/chronicle/chronicletwo/</guid><description>Worried about safety in Baltimore as a student? Here&amp;#39;s my personal take on living, studying, and thriving in the city.</description></item><item><title/><link>https://235c0f1d.mysite-7nr.pages.dev/aboutme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://235c0f1d.mysite-7nr.pages.dev/aboutme/</guid><description>&lt;h1 id="-about-me">🛡️ About Me&lt;/h1>
-&lt;h2 id="-how-it-all-started">🕵️‍♂️ How It All Started&amp;hellip;&lt;/h2>
-&lt;p>It all began when I was in &lt;strong>10th grade&lt;/strong>, innocently scrolling through &lt;strong>Facebook&lt;/strong>, when a friend confidently told me:&lt;/p>
-&lt;blockquote>
-&lt;p>&lt;em>&amp;ldquo;I can hack into your account without your password!&amp;rdquo;&lt;/em>&lt;/p>&lt;/blockquote>
-&lt;p>Being the ever curious person I am, I &lt;strong>challenged&lt;/strong> him. And to my absolute &lt;strong>horror (and amazement)&lt;/strong>, he actually &lt;strong>did it&lt;/strong>! That moment sparked my &lt;strong>obsession with cybersecurity&lt;/strong>.&lt;/p>
-&lt;p>I started like any newbie &lt;strong>googling &amp;ldquo;how to hack Facebook&amp;rdquo; (don&amp;rsquo;t judge, we&amp;rsquo;ve all been there 😆)&lt;/strong>. That led me down a rabbit hole of &lt;strong>phishing, OSINT, social engineering, bug bounties, and penetration testing&lt;/strong>. Fast forward to today, and here I am, living the cybersecurity dream, but this time, on the &lt;strong>right side&lt;/strong> of the game. 😎&lt;/p></description></item><item><title/><link>https://235c0f1d.mysite-7nr.pages.dev/resume/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://235c0f1d.mysite-7nr.pages.dev/resume/</guid><description>&lt;h1 id="-jainam-basra">🛡️ Jainam Basra&lt;/h1>
-&lt;p>🔗 &lt;strong>&lt;a href="https://www.linkedin.com/in/jainam-basra/">LinkedIn&lt;/a>&lt;/strong>&lt;/p>
-&lt;hr>
-&lt;h2 id="-education">🎓 Education&lt;/h2>
-&lt;h3 id="university-of-maryland-baltimore-county-baltimore-md-united-states">&lt;strong>University of Maryland Baltimore County, Baltimore, MD, United States&lt;/strong>&lt;/h3>
-&lt;p>📅 &lt;em>May 2024&lt;/em>&lt;br>
-&lt;strong>Master of Science in Cybersecurity&lt;/strong>&lt;/p>
-&lt;p>📚 &lt;em>Relevant Coursework:&lt;/em>&lt;/p>
-&lt;ul>
-&lt;li>Introduction to Cybersecurity&lt;/li>
-&lt;li>Cybersecurity Project&lt;/li>
-&lt;li>Managing Cybersecurity Operations&lt;/li>
-&lt;li>Enterprise Security&lt;/li>
-&lt;li>Security of Distributed Systems&lt;/li>
-&lt;li>Risk Analysis and Compliance&lt;/li>
-&lt;/ul>
-&lt;h3 id="sal-college-of-engineering-ahmedabad-gj-india">&lt;strong>SAL College of Engineering, Ahmedabad, GJ, India&lt;/strong>&lt;/h3>
-&lt;p>📅 &lt;em>Aug 2020&lt;/em>&lt;br>
-&lt;strong>Bachelor of Engineering in Information Technology&lt;/strong>&lt;/p>
-&lt;hr>
-&lt;h2 id="-technical-skills">🔧 Technical Skills&lt;/h2>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>&lt;strong>Category&lt;/strong>&lt;/th>
-&lt;th>&lt;strong>Skills &amp;amp; Tools&lt;/strong>&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>&lt;strong>Security &amp;amp; Monitoring&lt;/strong>&lt;/td>
-&lt;td>Nessus, Wireshark, Metasploit, Burp Suite, MITRE ATT&amp;amp;CK, sqlmap, Nmap, OWASP ZAP&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>Operating Systems&lt;/strong>&lt;/td>
-&lt;td>Windows, Linux, MacOS, Gophish, MITRE Framework, IDS/IPS&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>Databases &amp;amp; Cloud&lt;/strong>&lt;/td>
-&lt;td>AWS, MySQL, MongoDB, DynamoDB&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>Penetration Testing&lt;/strong>&lt;/td>
-&lt;td>Vulnerability Assessment, Network Scanning, Web Application Security Testing&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>Software &amp;amp; Tools&lt;/strong>&lt;/td>
-&lt;td>Autopsy, Nuclei, Windows Active Directory, Wireshark, MySQL, MobSF, Frida, Fiddle&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>Project Management&lt;/strong>&lt;/td>
-&lt;td>JIRA, Trello, Gantt Charts, MS Project, Agile/Scrum, Risk Management&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;hr>
-&lt;h2 id="-professional-experience">💼 Professional Experience&lt;/h2>
-&lt;h3 id="keelworks-foundation-oak-harbor-wa-usa">&lt;strong>Keelworks Foundation, Oak Harbor, WA, USA&lt;/strong>&lt;/h3>
-&lt;p>📅 &lt;em>Sept 2024 - Present&lt;/em>&lt;br>
-🛡 &lt;strong>Project Manager / Cybersecurity&lt;/strong>&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Jainam Basra</title>
+    <link>https://jainambasra.netlify.app/</link>
+    <description>Recent content on Jainam Basra</description>
+    <generator>Hugo -- 0.143.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 07 Feb 2025 11:30:03 +0000</lastBuildDate>
+    <atom:link href="https://jainambasra.netlify.app/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MS Cybersecurity: My Journey from India to the U.S. 🎓🔐</title>
+      <link>https://jainambasra.netlify.app/chronicle/chronicleone/</link>
+      <pubDate>Fri, 07 Feb 2025 11:30:03 +0000</pubDate>
+      <guid>https://jainambasra.netlify.app/chronicle/chronicleone/</guid>
+      <description>A deep dive into my experience as an international student studying cybersecurity at UMBC, featured in Saman Fatima&amp;#39;s podcast &amp;#39;Off the Record with Saman - Student Abroad&amp;#39;.</description>
+    </item>
+    <item>
+      <title>🔴 Hacking AI: Tricking the Model into Revealing Secrets! The Art of Prompt Injection (OWASP LLM Top 10)</title>
+      <link>https://jainambasra.netlify.app/post/post1/</link>
+      <pubDate>Fri, 07 Feb 2025 11:30:03 +0000</pubDate>
+      <guid>https://jainambasra.netlify.app/post/post1/</guid>
+      <description>Welcome to my new series on AI LLM Red Teaming! Today, let&amp;#39;s talk about Prompt Injection—the cybersecurity nightmare that makes LLMs spill secrets, break rules, and sometimes, even gaslight you.</description>
+    </item>
+    <item>
+      <title>Do you plan to pursue MS at UMBC, but worried if Baltimore is safe or not? 🎓🔐</title>
+      <link>https://jainambasra.netlify.app/chronicle/chronicletwo/</link>
+      <pubDate>Fri, 07 Feb 2025 11:30:03 +0000</pubDate>
+      <guid>https://jainambasra.netlify.app/chronicle/chronicletwo/</guid>
+      <description>Worried about safety in Baltimore as a student? Here&amp;#39;s my personal take on living, studying, and thriving in the city.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://jainambasra.netlify.app/aboutme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://jainambasra.netlify.app/aboutme/</guid>
+      <description>&lt;h1 id=&#34;-about-me&#34;&gt;🛡️ About Me&lt;/h1&gt;
+&lt;h2 id=&#34;-how-it-all-started&#34;&gt;🕵️‍♂️ How It All Started&amp;hellip;&lt;/h2&gt;
+&lt;p&gt;It all began when I was in &lt;strong&gt;10th grade&lt;/strong&gt;, innocently scrolling through &lt;strong&gt;Facebook&lt;/strong&gt;, when a friend confidently told me:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;&amp;ldquo;I can hack into your account without your password!&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Being the ever curious person I am, I &lt;strong&gt;challenged&lt;/strong&gt; him. And to my absolute &lt;strong&gt;horror (and amazement)&lt;/strong&gt;, he actually &lt;strong&gt;did it&lt;/strong&gt;! That moment sparked my &lt;strong&gt;obsession with cybersecurity&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;I started like any newbie &lt;strong&gt;googling &amp;ldquo;how to hack Facebook&amp;rdquo; (don&amp;rsquo;t judge, we&amp;rsquo;ve all been there 😆)&lt;/strong&gt;. That led me down a rabbit hole of &lt;strong&gt;phishing, OSINT, social engineering, bug bounties, and penetration testing&lt;/strong&gt;. Fast forward to today, and here I am, living the cybersecurity dream, but this time, on the &lt;strong&gt;right side&lt;/strong&gt; of the game. 😎&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://jainambasra.netlify.app/resume/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://jainambasra.netlify.app/resume/</guid>
+      <description>&lt;h1 id=&#34;-jainam-basra&#34;&gt;🛡️ Jainam Basra&lt;/h1&gt;
+&lt;p&gt;🔗 &lt;strong&gt;&lt;a href=&#34;https://www.linkedin.com/in/jainam-basra/&#34;&gt;LinkedIn&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-education&#34;&gt;🎓 Education&lt;/h2&gt;
+&lt;h3 id=&#34;university-of-maryland-baltimore-county-baltimore-md-united-states&#34;&gt;&lt;strong&gt;University of Maryland Baltimore County, Baltimore, MD, United States&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;📅 &lt;em&gt;May 2024&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;Master of Science in Cybersecurity&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;📚 &lt;em&gt;Relevant Coursework:&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduction to Cybersecurity&lt;/li&gt;
+&lt;li&gt;Cybersecurity Project&lt;/li&gt;
+&lt;li&gt;Managing Cybersecurity Operations&lt;/li&gt;
+&lt;li&gt;Enterprise Security&lt;/li&gt;
+&lt;li&gt;Security of Distributed Systems&lt;/li&gt;
+&lt;li&gt;Risk Analysis and Compliance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;sal-college-of-engineering-ahmedabad-gj-india&#34;&gt;&lt;strong&gt;SAL College of Engineering, Ahmedabad, GJ, India&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;📅 &lt;em&gt;Aug 2020&lt;/em&gt;&lt;br&gt;
+&lt;strong&gt;Bachelor of Engineering in Information Technology&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-technical-skills&#34;&gt;🔧 Technical Skills&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;Category&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;Skills &amp;amp; Tools&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Security &amp;amp; Monitoring&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Nessus, Wireshark, Metasploit, Burp Suite, MITRE ATT&amp;amp;CK, sqlmap, Nmap, OWASP ZAP&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Operating Systems&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Windows, Linux, MacOS, Gophish, MITRE Framework, IDS/IPS&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Databases &amp;amp; Cloud&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;AWS, MySQL, MongoDB, DynamoDB&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Penetration Testing&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Vulnerability Assessment, Network Scanning, Web Application Security Testing&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Software &amp;amp; Tools&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;Autopsy, Nuclei, Windows Active Directory, Wireshark, MySQL, MobSF, Frida, Fiddle&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Project Management&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;JIRA, Trello, Gantt Charts, MS Project, Agile/Scrum, Risk Management&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-professional-experience&#34;&gt;💼 Professional Experience&lt;/h2&gt;
+&lt;h3 id=&#34;keelworks-foundation-oak-harbor-wa-usa&#34;&gt;&lt;strong&gt;Keelworks Foundation, Oak Harbor, WA, USA&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;📅 &lt;em&gt;Sept 2024 - Present&lt;/em&gt;&lt;br&gt;
+🛡 &lt;strong&gt;Project Manager / Cybersecurity&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

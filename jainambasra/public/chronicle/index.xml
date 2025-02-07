@@ -1,1 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Chronicles on Jainam Basra</title><link>https://235c0f1d.mysite-7nr.pages.dev/chronicle/</link><description>Recent content in Chronicles on Jainam Basra</description><generator>Hugo -- 0.143.1</generator><language>en-us</language><lastBuildDate>Fri, 07 Feb 2025 11:30:03 +0000</lastBuildDate><atom:link href="https://235c0f1d.mysite-7nr.pages.dev/chronicle/index.xml" rel="self" type="application/rss+xml"/><item><title>MS Cybersecurity: My Journey from India to the U.S. 🎓🔐</title><link>https://235c0f1d.mysite-7nr.pages.dev/chronicle/chronicleone/</link><pubDate>Fri, 07 Feb 2025 11:30:03 +0000</pubDate><guid>https://235c0f1d.mysite-7nr.pages.dev/chronicle/chronicleone/</guid><description>A deep dive into my experience as an international student studying cybersecurity at UMBC, featured in Saman Fatima&amp;#39;s podcast &amp;#39;Off the Record with Saman - Student Abroad&amp;#39;.</description></item><item><title>Do you plan to pursue MS at UMBC, but worried if Baltimore is safe or not? 🎓🔐</title><link>https://235c0f1d.mysite-7nr.pages.dev/chronicle/chronicletwo/</link><pubDate>Fri, 07 Feb 2025 11:30:03 +0000</pubDate><guid>https://235c0f1d.mysite-7nr.pages.dev/chronicle/chronicletwo/</guid><description>Worried about safety in Baltimore as a student? Here&amp;#39;s my personal take on living, studying, and thriving in the city.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Chronicles on Jainam Basra</title>
+    <link>https://jainambasra.netlify.app/chronicle/</link>
+    <description>Recent content in Chronicles on Jainam Basra</description>
+    <generator>Hugo -- 0.143.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 07 Feb 2025 11:30:03 +0000</lastBuildDate>
+    <atom:link href="https://jainambasra.netlify.app/chronicle/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MS Cybersecurity: My Journey from India to the U.S. 🎓🔐</title>
+      <link>https://jainambasra.netlify.app/chronicle/chronicleone/</link>
+      <pubDate>Fri, 07 Feb 2025 11:30:03 +0000</pubDate>
+      <guid>https://jainambasra.netlify.app/chronicle/chronicleone/</guid>
+      <description>A deep dive into my experience as an international student studying cybersecurity at UMBC, featured in Saman Fatima&amp;#39;s podcast &amp;#39;Off the Record with Saman - Student Abroad&amp;#39;.</description>
+    </item>
+    <item>
+      <title>Do you plan to pursue MS at UMBC, but worried if Baltimore is safe or not? 🎓🔐</title>
+      <link>https://jainambasra.netlify.app/chronicle/chronicletwo/</link>
+      <pubDate>Fri, 07 Feb 2025 11:30:03 +0000</pubDate>
+      <guid>https://jainambasra.netlify.app/chronicle/chronicletwo/</guid>
+      <description>Worried about safety in Baltimore as a student? Here&amp;#39;s my personal take on living, studying, and thriving in the city.</description>
+    </item>
+  </channel>
+</rss>
