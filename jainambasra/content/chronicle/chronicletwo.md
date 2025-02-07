@@ -17,7 +17,7 @@ ShowRssButtonInSectionTermList: true
 # 🏙️ Is Baltimore Safe? My Personal Experience as a Student
 
 I often get asked by incoming students about the **safety of Baltimore**. 😊  
-I totally understand your concerns—it’s a new city, and you’re stepping into the unknown. Instead of throwing statistics at you, let me share my **personal experience**.  
+I totally understand your concerns it’s a new city, and you’re stepping into the unknown. Instead of throwing statistics at you, let me share my **personal experience**.  
 
 ---
 
@@ -29,7 +29,7 @@ Would I recommend this to everyone? **Not necessarily.** But I hope my experienc
 
 ## ⚠️ Safety Tips: What You Need to Know  
 Like any **big city**, there are **areas you should avoid** at certain times.  
-But this isn’t just a Baltimore thing—it’s **true for many places worldwide**.   
+But this isn’t just a Baltimore thing it’s **true for many places worldwide**.   
 
 ### ✅ Tips for Staying Safe:
 - Stick to your **routine** and well-lit paths.

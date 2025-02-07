@@ -5,6 +5,9 @@
     <loc>//localhost:1313/chronicle/chronicleone/</loc>
     <lastmod>2025-02-07T11:30:03+00:00</lastmod>
   </url><url>
+    <loc>//localhost:1313/post/post1/</loc>
+    <lastmod>2025-02-07T11:30:03+00:00</lastmod>
+  </url><url>
     <loc>//localhost:1313/chronicle/chronicletwo/</loc>
     <lastmod>2025-02-07T11:30:03+00:00</lastmod>
   </url><url>
@@ -14,15 +17,14 @@
     <loc>//localhost:1313/</loc>
     <lastmod>2025-02-07T11:30:03+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/aboutme/</loc>
+    <loc>//localhost:1313/post/</loc>
+    <lastmod>2025-02-07T11:30:03+00:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/post/post1/</loc>
+    <loc>//localhost:1313/aboutme/</loc>
   </url><url>
     <loc>//localhost:1313/resume/</loc>
   </url><url>
     <loc>//localhost:1313/categories/</loc>
-  </url><url>
-    <loc>//localhost:1313/post/</loc>
   </url><url>
     <loc>//localhost:1313/tags/</loc>
   </url>
