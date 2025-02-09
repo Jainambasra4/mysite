@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>LLM02:2025 - Sensitive Information Disclosure (OWASP LLM Top 10) | Jainam Basra</title>
+<meta name="keywords" content="">
+<meta name="description" content="Welcome to my new series on AI LLM Red Teaming! Today, let&#39;s Understand the Risks and Mitigations with Real-Life Fun Analogies.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/post/llm2/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9de45e225101e4f99701d2b68fc6b8a1ef6027928be6391fa15bf7f56326c909.css" integrity="sha256-neReIlEB5PmXAdK2j8a4oe9gJ5KL5jkfoVv39WMmyQk=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/post/llm2/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="http://localhost:1313/post/llm2/">
+  <meta property="og:site_name" content="Jainam Basra">
+  <meta property="og:title" content="LLM02:2025 - Sensitive Information Disclosure (OWASP LLM Top 10)">
+  <meta property="og:description" content="Welcome to my new series on AI LLM Red Teaming! Today, let&#39;s Understand the Risks and Mitigations with Real-Life Fun Analogies.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-02-09T11:30:03+00:00">
+    <meta property="article:modified_time" content="2025-02-09T11:30:03+00:00">
+    <meta property="og:image" content="http://localhost:1313/post/gpt.gif">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/post/gpt.gif">
+<meta name="twitter:title" content="LLM02:2025 - Sensitive Information Disclosure (OWASP LLM Top 10)">
+<meta name="twitter:description" content="Welcome to my new series on AI LLM Red Teaming! Today, let&#39;s Understand the Risks and Mitigations with Real-Life Fun Analogies.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "LLM02:2025 - Sensitive Information Disclosure (OWASP LLM Top 10)",
+      "item": "http://localhost:1313/post/llm2/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "LLM02:2025 - Sensitive Information Disclosure (OWASP LLM Top 10)",
+  "name": "LLM02:2025 - Sensitive Information Disclosure (OWASP LLM Top 10)",
+  "description": "Welcome to my new series on AI LLM Red Teaming! Today, let's Understand the Risks and Mitigations with Real-Life Fun Analogies.",
+  "keywords": [
+    
+  ],
+  "articleBody": "What Is Sensitive Information Disclosure? Imagine you’re at a dinner party, and someone starts sharing private stories they overheard about you from another guest. Not cool, right? 😬 This is what happens when Large Language Models (LLMs) spill secrets they shouldn’t.\nSensitive information includes PII (personal identifiable information) like your name or address, business secrets, or even proprietary algorithms. When LLMs, like the friendly AI waiter, “accidentally” reveal these secrets, it can lead to privacy violations and intellectual property theft.\nWhy Does It Happen? LLMs are like parrots with photographic memories. They don’t understand privacy they just repeat what they’ve been trained on or what you told them. If sensitive data sneaks into their training set, it’s like teaching a parrot your Wi-Fi password: you’ll regret it when the bird repeats it to strangers. 🦜💻\nCommon Vulnerabilities Explained with Fun Scenarios 1️⃣ PII Leakage Imagine telling a chatbot your phone number during a chat. Later, it randomly tells someone else your number like, “Oh, by the way, here’s Jane’s number!” Yikes! That’s PII leakage.\n2️⃣ Proprietary Algorithm Exposure Picture a magician revealing their secret tricks to the audience. If an LLM “remembers” how a proprietary algorithm works, it’s essentially playing the magician who can’t keep a secret. 🪄🤦‍♂️\n3️⃣ Business Data Disclosure Think of an LLM as your business partner. You discuss confidential strategies, but suddenly it blurts them out to a competitor because it wasn’t trained to filter private details. Talk about a betrayal! 🤔\nReal-Life Examples Samsung’s ChatGPT Mishap: Employees unknowingly shared sensitive business info, and it got absorbed into ChatGPT’s memory. Proof Pudding Attack (CVE-2019-20634): Hackers reverse-engineered sensitive data from a poorly configured model. How Do We Stop the Leaks? 🛠️ 1️⃣ Sanitize the Data Think of this like wearing gloves while cooking. You wouldn’t want to contaminate your secret recipe, right? 🍳 How? Scrub or mask sensitive content before training the model. 2️⃣ Enforce Access Controls Only let trusted chefs into the kitchen (aka strict access controls) and lock away the special ingredients. 🔐 3️⃣ Federated Learning Decentralize training by storing data on separate devices. It’s like cooking in different kitchens without ever combining the secret sauces. 4️⃣ Differential Privacy Add a little “noise” to the data, like background chatter at a party, so no one can pick up individual secrets. 🤫🎉 5️⃣ Educate Users Teach users what NOT to share with an LLM. It’s like telling a friend, “Don’t tell the waiter your deepest secrets!” 🍽️ Prevention in Action Scenario 1: Unintentional Data Exposure A chatbot tells a user sensitive business info because no one sanitized the data.\nSolution: Scrub the data before training. It’s like cleaning your dishes before guests arrive! 🧽\nScenario 2: Targeted Prompt Injection An attacker crafts a sneaky input, bypassing filters to extract secrets.\nSolution: Add security rules to limit what the LLM can reveal. Think of it as training your parrot not to talk when strangers are around. 🦜\nScenario 3: Data Leak via Training Data Negligent training leads to private info being baked into the model.\nSolution: Use homomorphic encryption or differential privacy techniques.\nTips for Safe LLM Use 🧼 Sanitize inputs: Mask sensitive data before interacting with LLMs. 📖 Educate users: Teach them not to share sensitive info with LLMs. 🚧 Limit data access: Only give LLMs access to what’s necessary. Conclusion LLMs are powerful tools, but they need clear boundaries just like your oversharing parrot or your dinner party guests! 🦜🍽️ By sanitizing data, limiting access, and teaching users best practices, we can make sure these AI helpers stay helpful without spilling secrets.\nReference \u0026 Courtesy Lessons Learned from ChatGPT’s Samsung Leak AI Data Leak Crisis: Protecting Your Secrets ",
+  "wordCount" : "613",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/post/gpt.gif","datePublished": "2025-02-09T11:30:03Z",
+  "dateModified": "2025-02-09T11:30:03Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/post/llm2/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jainam Basra",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Jainam Basra (Alt + H)">Jainam Basra</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/post" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/chronicle" title="Life Abroad">
+                    <span>Life Abroad</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/aboutme" title="About Me">
+                    <span>About Me</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/resume" title="Resume">
+                    <span>Resume</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/post/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      LLM02:2025 - Sensitive Information Disclosure (OWASP LLM Top 10)
+    </h1>
+    <div class="post-description">
+      Welcome to my new series on AI LLM Red Teaming! Today, let&#39;s Understand the Risks and Mitigations with Real-Life Fun Analogies.
+    </div>
+    <div class="post-meta"><span title='2025-02-09 11:30:03 +0000 +0000'>February 9, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;613 words
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="eager" src="http://localhost:1313/post/gpt.gif" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#what-is-sensitive-information-disclosure" aria-label="What Is Sensitive Information Disclosure?">What Is Sensitive Information Disclosure?</a></li>
+                <li>
+                    <a href="#why-does-it-happen" aria-label="Why Does It Happen?">Why Does It Happen?</a></li>
+                <li>
+                    <a href="#common-vulnerabilities-explained-with-fun-scenarios" aria-label="Common Vulnerabilities Explained with Fun Scenarios">Common Vulnerabilities Explained with Fun Scenarios</a><ul>
+                        
+                <li>
+                    <a href="#1-pii-leakage" aria-label="1️⃣ PII Leakage">1️⃣ PII Leakage</a></li>
+                <li>
+                    <a href="#2-proprietary-algorithm-exposure" aria-label="2️⃣ Proprietary Algorithm Exposure">2️⃣ Proprietary Algorithm Exposure</a></li>
+                <li>
+                    <a href="#3-business-data-disclosure" aria-label="3️⃣ Business Data Disclosure">3️⃣ Business Data Disclosure</a></li></ul>
+                </li>
+                <li>
+                    <a href="#real-life-examples" aria-label="Real-Life Examples">Real-Life Examples</a></li>
+                <li>
+                    <a href="#how-do-we-stop-the-leaks-" aria-label="How Do We Stop the Leaks? 🛠️">How Do We Stop the Leaks? 🛠️</a><ul>
+                        
+                <li>
+                    <a href="#1-sanitize-the-data" aria-label="1️⃣ Sanitize the Data">1️⃣ Sanitize the Data</a></li>
+                <li>
+                    <a href="#2-enforce-access-controls" aria-label="2️⃣ Enforce Access Controls">2️⃣ Enforce Access Controls</a></li>
+                <li>
+                    <a href="#3-federated-learning" aria-label="3️⃣ Federated Learning">3️⃣ Federated Learning</a></li>
+                <li>
+                    <a href="#4-differential-privacy" aria-label="4️⃣ Differential Privacy">4️⃣ Differential Privacy</a></li>
+                <li>
+                    <a href="#5-educate-users" aria-label="5️⃣ Educate Users">5️⃣ Educate Users</a></li></ul>
+                </li>
+                <li>
+                    <a href="#prevention-in-action" aria-label="Prevention in Action">Prevention in Action</a><ul>
+                        
+                <li>
+                    <a href="#scenario-1-unintentional-data-exposure" aria-label="Scenario 1: Unintentional Data Exposure">Scenario 1: Unintentional Data Exposure</a></li>
+                <li>
+                    <a href="#scenario-2-targeted-prompt-injection" aria-label="Scenario 2: Targeted Prompt Injection">Scenario 2: Targeted Prompt Injection</a></li>
+                <li>
+                    <a href="#scenario-3-data-leak-via-training-data" aria-label="Scenario 3: Data Leak via Training Data">Scenario 3: Data Leak via Training Data</a></li></ul>
+                </li>
+                <li>
+                    <a href="#tips-for-safe-llm-use" aria-label="Tips for Safe LLM Use">Tips for Safe LLM Use</a></li>
+                <li>
+                    <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+                <li>
+                    <a href="#reference--courtesy" aria-label="Reference &amp; Courtesy">Reference &amp; Courtesy</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h3 id="what-is-sensitive-information-disclosure"><strong>What Is Sensitive Information Disclosure?</strong><a hidden class="anchor" aria-hidden="true" href="#what-is-sensitive-information-disclosure">#</a></h3>
+<p>Imagine you&rsquo;re at a <strong>dinner party</strong>, and someone starts sharing private stories they overheard about you from another guest. Not cool, right? 😬 This is what happens when <strong>Large Language Models (LLMs)</strong> spill secrets they shouldn’t.</p>
+<p>Sensitive information includes <strong>PII (personal identifiable information)</strong> like your name or address, <strong>business secrets</strong>, or even <strong>proprietary algorithms</strong>. When LLMs, like the friendly AI waiter, &ldquo;accidentally&rdquo; reveal these secrets, it can lead to <strong>privacy violations</strong> and <strong>intellectual property theft</strong>.</p>
+<hr>
+<h3 id="why-does-it-happen"><strong>Why Does It Happen?</strong><a hidden class="anchor" aria-hidden="true" href="#why-does-it-happen">#</a></h3>
+<p>LLMs are like <strong>parrots</strong> with photographic memories. They don’t understand privacy they just repeat what they’ve been trained on or what you told them. If sensitive data sneaks into their training set, it’s like teaching a parrot your Wi-Fi password: you’ll regret it when the bird repeats it to strangers. 🦜💻</p>
+<hr>
+<h3 id="common-vulnerabilities-explained-with-fun-scenarios"><strong>Common Vulnerabilities Explained with Fun Scenarios</strong><a hidden class="anchor" aria-hidden="true" href="#common-vulnerabilities-explained-with-fun-scenarios">#</a></h3>
+<h4 id="1-pii-leakage"><strong>1️⃣ PII Leakage</strong><a hidden class="anchor" aria-hidden="true" href="#1-pii-leakage">#</a></h4>
+<p>Imagine telling a chatbot your phone number during a chat. Later, it randomly tells someone else your number like, “Oh, by the way, here’s Jane’s number!” Yikes! That’s <strong>PII leakage</strong>.</p>
+<h4 id="2-proprietary-algorithm-exposure"><strong>2️⃣ Proprietary Algorithm Exposure</strong><a hidden class="anchor" aria-hidden="true" href="#2-proprietary-algorithm-exposure">#</a></h4>
+<p>Picture a magician revealing their secret tricks to the audience. If an LLM &ldquo;remembers&rdquo; how a proprietary algorithm works, it’s essentially playing the magician who can’t keep a secret. 🪄🤦‍♂️</p>
+<h4 id="3-business-data-disclosure"><strong>3️⃣ Business Data Disclosure</strong><a hidden class="anchor" aria-hidden="true" href="#3-business-data-disclosure">#</a></h4>
+<p>Think of an LLM as your <strong>business partner</strong>. You discuss confidential strategies, but suddenly it blurts them out to a competitor because it wasn’t trained to filter private details. Talk about a betrayal! 🤔</p>
+<hr>
+<h3 id="real-life-examples"><strong>Real-Life Examples</strong><a hidden class="anchor" aria-hidden="true" href="#real-life-examples">#</a></h3>
+<ul>
+<li><strong>Samsung&rsquo;s ChatGPT Mishap</strong>: Employees unknowingly shared <strong>sensitive business info</strong>, and it got absorbed into ChatGPT&rsquo;s memory.</li>
+<li><strong>Proof Pudding Attack (CVE-2019-20634)</strong>: Hackers reverse-engineered sensitive data from a poorly configured model.</li>
+</ul>
+<hr>
+<h3 id="how-do-we-stop-the-leaks-"><strong>How Do We Stop the Leaks?</strong> 🛠️<a hidden class="anchor" aria-hidden="true" href="#how-do-we-stop-the-leaks-">#</a></h3>
+<h4 id="1-sanitize-the-data"><strong>1️⃣ Sanitize the Data</strong><a hidden class="anchor" aria-hidden="true" href="#1-sanitize-the-data">#</a></h4>
+<ul>
+<li>Think of this like wearing gloves while cooking. You wouldn’t want to contaminate your secret recipe, right? 🍳</li>
+<li><strong>How?</strong> Scrub or mask sensitive content before training the model.</li>
+</ul>
+<h4 id="2-enforce-access-controls"><strong>2️⃣ Enforce Access Controls</strong><a hidden class="anchor" aria-hidden="true" href="#2-enforce-access-controls">#</a></h4>
+<ul>
+<li>Only let trusted chefs into the kitchen (aka strict <strong>access controls</strong>) and lock away the special ingredients. 🔐</li>
+</ul>
+<h4 id="3-federated-learning"><strong>3️⃣ Federated Learning</strong><a hidden class="anchor" aria-hidden="true" href="#3-federated-learning">#</a></h4>
+<ul>
+<li>Decentralize training by storing data on <strong>separate devices</strong>. It’s like cooking in different kitchens without ever combining the secret sauces.</li>
+</ul>
+<h4 id="4-differential-privacy"><strong>4️⃣ Differential Privacy</strong><a hidden class="anchor" aria-hidden="true" href="#4-differential-privacy">#</a></h4>
+<ul>
+<li>Add a little &ldquo;noise&rdquo; to the data, like background chatter at a party, so no one can pick up individual secrets. 🤫🎉</li>
+</ul>
+<h4 id="5-educate-users"><strong>5️⃣ Educate Users</strong><a hidden class="anchor" aria-hidden="true" href="#5-educate-users">#</a></h4>
+<ul>
+<li>Teach users what NOT to share with an LLM. It’s like telling a friend, “Don’t tell the waiter your deepest secrets!” 🍽️</li>
+</ul>
+<hr>
+<h3 id="prevention-in-action"><strong>Prevention in Action</strong><a hidden class="anchor" aria-hidden="true" href="#prevention-in-action">#</a></h3>
+<h4 id="scenario-1-unintentional-data-exposure"><strong>Scenario 1: Unintentional Data Exposure</strong><a hidden class="anchor" aria-hidden="true" href="#scenario-1-unintentional-data-exposure">#</a></h4>
+<p>A chatbot tells a user sensitive business info because no one sanitized the data.<br>
+<strong>Solution:</strong> Scrub the data before training. It’s like cleaning your dishes before guests arrive! 🧽</p>
+<h4 id="scenario-2-targeted-prompt-injection"><strong>Scenario 2: Targeted Prompt Injection</strong><a hidden class="anchor" aria-hidden="true" href="#scenario-2-targeted-prompt-injection">#</a></h4>
+<p>An attacker crafts a sneaky input, bypassing filters to extract secrets.<br>
+<strong>Solution:</strong> Add security rules to limit what the LLM can reveal. Think of it as training your parrot not to talk when strangers are around. 🦜</p>
+<h4 id="scenario-3-data-leak-via-training-data"><strong>Scenario 3: Data Leak via Training Data</strong><a hidden class="anchor" aria-hidden="true" href="#scenario-3-data-leak-via-training-data">#</a></h4>
+<p>Negligent training leads to private info being baked into the model.<br>
+<strong>Solution:</strong> Use <strong>homomorphic encryption</strong> or <strong>differential privacy</strong> techniques.</p>
+<hr>
+<h3 id="tips-for-safe-llm-use"><strong>Tips for Safe LLM Use</strong><a hidden class="anchor" aria-hidden="true" href="#tips-for-safe-llm-use">#</a></h3>
+<ul>
+<li>🧼 <strong>Sanitize inputs</strong>: Mask sensitive data before interacting with LLMs.</li>
+<li>📖 <strong>Educate users</strong>: Teach them not to share sensitive info with LLMs.</li>
+<li>🚧 <strong>Limit data access</strong>: Only give LLMs access to what’s necessary.</li>
+</ul>
+<hr>
+<h3 id="conclusion"><strong>Conclusion</strong><a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h3>
+<p>LLMs are powerful tools, but they need <strong>clear boundaries</strong> just like your oversharing parrot or your dinner party guests! 🦜🍽️ By sanitizing data, limiting access, and teaching users best practices, we can make sure these AI helpers stay helpful without spilling secrets.</p>
+<hr>
+<h3 id="reference--courtesy"><strong>Reference &amp; Courtesy</strong><a hidden class="anchor" aria-hidden="true" href="#reference--courtesy">#</a></h3>
+<ul>
+<li><a href="https://cybernews.com/news/chatgpts-samsung-leak-lessons-learned/">Lessons Learned from ChatGPT’s Samsung Leak</a></li>
+<li><a href="https://www.foxbusiness.com/">AI Data Leak Crisis: Protecting Your Secrets</a></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Jainam Basra</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
