@@ -26,12 +26,12 @@
 
 ## 🔧 Technical Skills  
 
-| **Category**               | **Skills & Tools**  |
-|---------------------------|--------------------|
-| **Security & Monitoring** | Nessus, Wireshark, Metasploit, Burp Suite, MITRE ATT&CK, sqlmap, Nmap, OWASP ZAP  |
+| **Category**               | **Skills & Tools** |
+|--------------------------- |--------------------|
+| **Security & Monitoring**  | Nessus, Wireshark, Metasploit, Burp Suite, MITRE ATT&CK, sqlmap, Nmap, OWASP ZAP  |
 | **Operating Systems**      | Windows, Linux, MacOS, Gophish, MITRE Framework, IDS/IPS |
 | **Databases & Cloud**      | AWS, MySQL, MongoDB, DynamoDB  |
-| **Penetration Testing**    | Vulnerability Assessment, Network Scanning, Web Application Security Testing  |
+| **Penetration Testing**    | Generative AI, Vulnerability Assessment, Network Scanning, Web Application Security Testing, LLM Security  |
 | **Software & Tools**       | Autopsy, Nuclei, Windows Active Directory, Wireshark, MySQL, MobSF, Frida, Fiddle  |
 | **Project Management**     | JIRA, Trello, Gantt Charts, MS Project, Agile/Scrum, Risk Management  |
 
@@ -41,7 +41,7 @@
 
 ### **Keelworks Foundation, Oak Harbor, WA, USA**  
 📅 *Sept 2024 - Present*  
-🛡 **Project Manager / Cybersecurity**  
+🛡 **Information Security Engineer / Project Manager**  
 
 - Led **comprehensive security assessments**, including **threat modeling, risk assessments, and vulnerability management** for software and cloud infrastructure.  
 - Directed deployment of **advanced security technologies**, such as **SIEM (Security Information and Event Management) systems and endpoint protection solutions**, enhancing the overall security posture.  
@@ -51,7 +51,7 @@
 
 ### **Techdefence Labs, Ahmedabad, GJ, India**  
 📅 *May 2019 - Aug 2022*  
-🛡 **Information Security Analyst | Penetration Tester**  
+🛡 **Information Security Analyst / Penetration Tester**  
 
 - **Uncovered, reported, and resolved 50+ critical vulnerabilities** in **mobile applications**, protecting sensitive **user data (credit card info, passwords)**.  
 - **Reduced cyberattacks by 90%** through **risk assessments of 10+ applications**, leveraging **OWASP Top 10 methodologies**, leading to the **identification and resolution of 30+ vulnerabilities**.  
