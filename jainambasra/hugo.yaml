@@ -2,6 +2,11 @@ baseURL: https://jainambasra.com/
 languageCode: en-us
 title: Jainam Basra
 theme: ["PaperMod"]
+sitemap:
+  changeFreq: ""
+  disable: false
+  filename: sitemap.xml
+  priority: -1
 
 menu:
   main:
