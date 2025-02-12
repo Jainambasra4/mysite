@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>LLM03:2025 LLM Supply Chain: Who’s Messing with My AI Ingredients? (OWASP LLM Top 10) | Jainam Basra</title>
+<meta name="keywords" content="">
+<meta name="description" content="Supply chains aren’t just for logistics anymore LLMs have their own, and they’re just as vulnerable. Let’s talk about how attackers can poison your models, sneak malware into your adapters, and turn your AI masterpiece into a security nightmare.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/post/llm3/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9de45e225101e4f99701d2b68fc6b8a1ef6027928be6391fa15bf7f56326c909.css" integrity="sha256-neReIlEB5PmXAdK2j8a4oe9gJ5KL5jkfoVv39WMmyQk=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/post/llm3/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="http://localhost:1313/post/llm3/">
+  <meta property="og:site_name" content="Jainam Basra">
+  <meta property="og:title" content="LLM03:2025 LLM Supply Chain: Who’s Messing with My AI Ingredients? (OWASP LLM Top 10)">
+  <meta property="og:description" content="Supply chains aren’t just for logistics anymore LLMs have their own, and they’re just as vulnerable. Let’s talk about how attackers can poison your models, sneak malware into your adapters, and turn your AI masterpiece into a security nightmare.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-02-11T11:30:03+00:00">
+    <meta property="article:modified_time" content="2025-02-11T11:30:03+00:00">
+    <meta property="og:image" content="http://localhost:1313/post/llm3.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/post/llm3.png">
+<meta name="twitter:title" content="LLM03:2025 LLM Supply Chain: Who’s Messing with My AI Ingredients? (OWASP LLM Top 10)">
+<meta name="twitter:description" content="Supply chains aren’t just for logistics anymore LLMs have their own, and they’re just as vulnerable. Let’s talk about how attackers can poison your models, sneak malware into your adapters, and turn your AI masterpiece into a security nightmare.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "LLM03:2025 LLM Supply Chain: Who’s Messing with My AI Ingredients? (OWASP LLM Top 10)",
+      "item": "http://localhost:1313/post/llm3/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "LLM03:2025 LLM Supply Chain: Who’s Messing with My AI Ingredients? (OWASP LLM Top 10)",
+  "name": "LLM03:2025 LLM Supply Chain: Who’s Messing with My AI Ingredients? (OWASP LLM Top 10)",
+  "description": "Supply chains aren’t just for logistics anymore LLMs have their own, and they’re just as vulnerable. Let’s talk about how attackers can poison your models, sneak malware into your adapters, and turn your AI masterpiece into a security nightmare.",
+  "keywords": [
+    
+  ],
+  "articleBody": "🔗 LLM Supply Chain: Who’s Messing with My AI Ingredients? (OWASP LLM Top 10)\nWelcome back, cyber enthusiasts! 🔥 In today’s AI LLM Red Teaming series, we’re diving into another juicy vulnerability from the OWASP Top 10 for LLMs: the Supply Chain.\nIf you think supply chains are just for shipping products, think again! For LLMs, the supply chain covers everything training data, pre-trained models, fine-tuning adapters, and even deployment platforms. And, oh boy, the risks are everywhere. 🫠\nWhat is the LLM Supply Chain? Imagine you’re hosting a potluck dinner. Your friends bring ingredients: veggies, sauces, and desserts. But what happens if Bob’s brownies have peanuts (oops, allergies), Jane’s tomato sauce has gone bad, and someone sneaks in a “special ingredient” you didn’t ask for? 🤔\nThat’s the LLM Supply Chain in a nutshell. It’s the series of external components like datasets, pre-trained models, and adapters that you rely on to create your AI masterpiece. But each step introduces risks: tampering, poisoning, outdated code, or even straight-up malware.\nRisks: How Your Potluck (AI) Goes Wrong Here are some real risks you face in your LLM supply chain:\n🍞 Outdated Libraries (Stale Bread) Using old or unmaintained libraries is like using expired milk-it works until it doesn’t. Attackers love exploiting outdated dependencies to sneak in malware or backdoors.\n🥷 Malicious Pre-Trained Models (The Trojan Dish) Pre-trained models save time but come with hidden surprises. They might include backdoors, biases, or even malicious code, making them the AI version of a Trojan horse.\n🪤 LoRA Adapters (Too Good to Be True) LoRA adapters are efficient fine-tuning tools, but they can be tampered with. Think of them as a “friend” offering to help, but secretly sabotaging your work.\n☁️ Cloud Vulnerabilities (The Party Crasher) Hosting LLMs on shared cloud platforms is great until attackers exploit virtualization layers or firmware vulnerabilities to access your sensitive data.\n🧾 Licensing Drama (Legal Trouble) Using datasets or tools without fully understanding their licenses? That’s a lawsuit waiting to happen. AI licenses are tricky, and ignoring them could cost you big.\nReal-Life Cases: The LLM Drama is Real PoisonGPT A tampered model on Hugging Face exploited safety features and spread malicious outputs. It’s like swapping your spaghetti with worms and calling it “fine dining.”\nPyTorch Dependency Hack A Python library was compromised, infecting entire AI pipelines. This is why “free” doesn’t always mean safe.\nFake WizardLM Model Attackers uploaded a malware-infested clone of a popular model. Think of it as buying a knockoff Rolex that secretly tracks your bank details.\nMitigations: How to Keep the AI Kitchen Safe 1️⃣ Vet Your Ingredients\nAlways verify the source of your libraries, datasets, and pre-trained models. Trust, but verify.\n2️⃣ SBOMs (Software Bill of Materials)\nTrack every component in your LLM’s “recipe” to ensure nothing shady sneaks in.\n3️⃣ Encrypt and Verify\nUse encryption and integrity checks to ensure your models and adapters haven’t been tampered with.\n4️⃣ Red Teaming\nSimulate attacks on your supply chain to find weaknesses before attackers do.\n5️⃣ Update and Patch Regularly\nDon’t let outdated components become your Achilles’ heel. Keep everything fresh.\n6️⃣ Use Provenance Tools\nVerify model integrity with signing and file hashes. Think of it as the AI version of a security seal.\nFinal Thoughts The LLM supply chain isn’t just a backend process it’s a critical vulnerability if left unchecked. With attackers targeting every step from training data to deployment, securing your AI systems is more important than ever.\nSo, whether you’re building the next GPT or fine-tuning a chatbot for your app, don’t let bad ingredients ruin your masterpiece. Secure your supply chain, test thoroughly, and remember: the best AI systems are built on trust and vigilance.\n",
+  "wordCount" : "617",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/post/llm3.png","datePublished": "2025-02-11T11:30:03Z",
+  "dateModified": "2025-02-11T11:30:03Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/post/llm3/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jainam Basra",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Jainam Basra (Alt + H)">Jainam Basra</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/post" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/chronicle" title="Life Abroad">
+                    <span>Life Abroad</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/aboutme" title="About Me">
+                    <span>About Me</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/resume" title="Resume">
+                    <span>Resume</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/post/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      LLM03:2025 LLM Supply Chain: Who’s Messing with My AI Ingredients? (OWASP LLM Top 10)
+    </h1>
+    <div class="post-description">
+      Supply chains aren’t just for logistics anymore LLMs have their own, and they’re just as vulnerable. Let’s talk about how attackers can poison your models, sneak malware into your adapters, and turn your AI masterpiece into a security nightmare.
+    </div>
+    <div class="post-meta"><span title='2025-02-11 11:30:03 +0000 +0000'>February 11, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;617 words
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="eager" src="http://localhost:1313/post/llm3.png" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#what-is-the-llm-supply-chain" aria-label="What is the LLM Supply Chain?">What is the LLM Supply Chain?</a></li>
+                <li>
+                    <a href="#risks-how-your-potluck-ai-goes-wrong" aria-label="Risks: How Your Potluck (AI) Goes Wrong">Risks: How Your Potluck (AI) Goes Wrong</a><ul>
+                        
+                <li>
+                    <a href="#-outdated-libraries-stale-bread" aria-label="🍞 Outdated Libraries (Stale Bread)">🍞 Outdated Libraries (Stale Bread)</a></li>
+                <li>
+                    <a href="#-malicious-pre-trained-models-the-trojan-dish" aria-label="🥷 Malicious Pre-Trained Models (The Trojan Dish)">🥷 Malicious Pre-Trained Models (The Trojan Dish)</a></li>
+                <li>
+                    <a href="#-lora-adapters-too-good-to-be-true" aria-label="🪤 LoRA Adapters (Too Good to Be True)">🪤 LoRA Adapters (Too Good to Be True)</a></li>
+                <li>
+                    <a href="#-cloud-vulnerabilities-the-party-crasher" aria-label="☁️ Cloud Vulnerabilities (The Party Crasher)">☁️ Cloud Vulnerabilities (The Party Crasher)</a></li>
+                <li>
+                    <a href="#-licensing-drama-legal-trouble" aria-label="🧾 Licensing Drama (Legal Trouble)">🧾 Licensing Drama (Legal Trouble)</a></li></ul>
+                </li>
+                <li>
+                    <a href="#real-life-cases-the-llm-drama-is-real" aria-label="Real-Life Cases: The LLM Drama is Real">Real-Life Cases: The LLM Drama is Real</a><ul>
+                        
+                <li>
+                    <a href="#poisongpt" aria-label="PoisonGPT">PoisonGPT</a></li>
+                <li>
+                    <a href="#pytorch-dependency-hack" aria-label="PyTorch Dependency Hack">PyTorch Dependency Hack</a></li>
+                <li>
+                    <a href="#fake-wizardlm-model" aria-label="Fake WizardLM Model">Fake WizardLM Model</a></li></ul>
+                </li>
+                <li>
+                    <a href="#mitigations-how-to-keep-the-ai-kitchen-safe" aria-label="Mitigations: How to Keep the AI Kitchen Safe">Mitigations: How to Keep the AI Kitchen Safe</a></li>
+                <li>
+                    <a href="#final-thoughts" aria-label="Final Thoughts">Final Thoughts</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>🔗 <strong>LLM Supply Chain: Who’s Messing with My AI Ingredients? (OWASP LLM Top 10)</strong></p>
+<p>Welcome back, cyber enthusiasts! 🔥 In today’s <strong>AI LLM Red Teaming series</strong>, we’re diving into another juicy vulnerability from the <strong>OWASP Top 10 for LLMs</strong>: the <strong>Supply Chain</strong>.</p>
+<p>If you think supply chains are just for shipping products, think again! For LLMs, the supply chain covers everything <strong>training data, pre-trained models, fine-tuning adapters, and even deployment platforms.</strong> And, oh boy, the risks are <em>everywhere</em>. 🫠</p>
+<hr>
+<h2 id="what-is-the-llm-supply-chain"><strong>What is the LLM Supply Chain?</strong><a hidden class="anchor" aria-hidden="true" href="#what-is-the-llm-supply-chain">#</a></h2>
+<p>Imagine you’re hosting a potluck dinner. Your friends bring ingredients: veggies, sauces, and desserts. But what happens if Bob’s brownies have peanuts (oops, allergies), Jane’s tomato sauce has gone bad, and someone sneaks in a “special ingredient” you didn’t ask for? 🤔</p>
+<p>That’s the <strong>LLM Supply Chain</strong> in a nutshell. It’s the <strong>series of external components</strong> like datasets, pre-trained models, and adapters that you rely on to create your AI masterpiece. But each step introduces risks: tampering, poisoning, outdated code, or even straight-up malware.</p>
+<hr>
+<h2 id="risks-how-your-potluck-ai-goes-wrong"><strong>Risks: How Your Potluck (AI) Goes Wrong</strong><a hidden class="anchor" aria-hidden="true" href="#risks-how-your-potluck-ai-goes-wrong">#</a></h2>
+<p>Here are some real risks you face in your LLM supply chain:</p>
+<h3 id="-outdated-libraries-stale-bread">🍞 <strong>Outdated Libraries (Stale Bread)</strong><a hidden class="anchor" aria-hidden="true" href="#-outdated-libraries-stale-bread">#</a></h3>
+<p>Using old or unmaintained libraries is like using expired milk-it works until it doesn’t. Attackers love exploiting outdated dependencies to sneak in malware or backdoors.</p>
+<h3 id="-malicious-pre-trained-models-the-trojan-dish">🥷 <strong>Malicious Pre-Trained Models (The Trojan Dish)</strong><a hidden class="anchor" aria-hidden="true" href="#-malicious-pre-trained-models-the-trojan-dish">#</a></h3>
+<p>Pre-trained models save time but come with hidden surprises. They might include <strong>backdoors, biases, or even malicious code</strong>, making them the AI version of a Trojan horse.</p>
+<h3 id="-lora-adapters-too-good-to-be-true">🪤 <strong>LoRA Adapters (Too Good to Be True)</strong><a hidden class="anchor" aria-hidden="true" href="#-lora-adapters-too-good-to-be-true">#</a></h3>
+<p>LoRA adapters are efficient fine-tuning tools, but they can be tampered with. Think of them as a “friend” offering to help, but secretly sabotaging your work.</p>
+<h3 id="-cloud-vulnerabilities-the-party-crasher">☁️ <strong>Cloud Vulnerabilities (The Party Crasher)</strong><a hidden class="anchor" aria-hidden="true" href="#-cloud-vulnerabilities-the-party-crasher">#</a></h3>
+<p>Hosting LLMs on shared cloud platforms is great until attackers exploit virtualization layers or firmware vulnerabilities to access your sensitive data.</p>
+<h3 id="-licensing-drama-legal-trouble">🧾 <strong>Licensing Drama (Legal Trouble)</strong><a hidden class="anchor" aria-hidden="true" href="#-licensing-drama-legal-trouble">#</a></h3>
+<p>Using datasets or tools without fully understanding their licenses? That’s a lawsuit waiting to happen. AI licenses are tricky, and ignoring them could cost you big.</p>
+<hr>
+<h2 id="real-life-cases-the-llm-drama-is-real"><strong>Real-Life Cases: The LLM Drama is Real</strong><a hidden class="anchor" aria-hidden="true" href="#real-life-cases-the-llm-drama-is-real">#</a></h2>
+<h3 id="poisongpt"><strong>PoisonGPT</strong><a hidden class="anchor" aria-hidden="true" href="#poisongpt">#</a></h3>
+<p>A tampered model on Hugging Face exploited safety features and spread malicious outputs. It’s like swapping your spaghetti with worms and calling it “fine dining.”</p>
+<h3 id="pytorch-dependency-hack"><strong>PyTorch Dependency Hack</strong><a hidden class="anchor" aria-hidden="true" href="#pytorch-dependency-hack">#</a></h3>
+<p>A Python library was compromised, infecting entire AI pipelines. This is why “free” doesn’t always mean safe.</p>
+<h3 id="fake-wizardlm-model"><strong>Fake WizardLM Model</strong><a hidden class="anchor" aria-hidden="true" href="#fake-wizardlm-model">#</a></h3>
+<p>Attackers uploaded a malware-infested clone of a popular model. Think of it as buying a knockoff Rolex that secretly tracks your bank details.</p>
+<hr>
+<h2 id="mitigations-how-to-keep-the-ai-kitchen-safe"><strong>Mitigations: How to Keep the AI Kitchen Safe</strong><a hidden class="anchor" aria-hidden="true" href="#mitigations-how-to-keep-the-ai-kitchen-safe">#</a></h2>
+<p>1️⃣ <strong>Vet Your Ingredients</strong><br>
+Always verify the source of your libraries, datasets, and pre-trained models. Trust, but verify.</p>
+<p>2️⃣ <strong>SBOMs (Software Bill of Materials)</strong><br>
+Track every component in your LLM’s “recipe” to ensure nothing shady sneaks in.</p>
+<p>3️⃣ <strong>Encrypt and Verify</strong><br>
+Use encryption and integrity checks to ensure your models and adapters haven’t been tampered with.</p>
+<p>4️⃣ <strong>Red Teaming</strong><br>
+Simulate attacks on your supply chain to find weaknesses before attackers do.</p>
+<p>5️⃣ <strong>Update and Patch Regularly</strong><br>
+Don’t let outdated components become your Achilles&rsquo; heel. Keep everything fresh.</p>
+<p>6️⃣ <strong>Use Provenance Tools</strong><br>
+Verify model integrity with signing and file hashes. Think of it as the AI version of a security seal.</p>
+<hr>
+<h2 id="final-thoughts"><strong>Final Thoughts</strong><a hidden class="anchor" aria-hidden="true" href="#final-thoughts">#</a></h2>
+<p>The LLM supply chain isn’t just a backend process it’s a <strong>critical vulnerability</strong> if left unchecked. With attackers targeting every step from training data to deployment, securing your AI systems is more important than ever.</p>
+<p>So, whether you’re building the next GPT or fine-tuning a chatbot for your app, <strong>don’t let bad ingredients ruin your masterpiece.</strong> Secure your supply chain, test thoroughly, and remember: <strong>the best AI systems are built on trust and vigilance.</strong></p>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:1313/post/llm2/">
+    <span class="title">Next »</span>
+    <br>
+    <span>LLM02:2025 - Sensitive Information Disclosure (OWASP LLM Top 10)</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Jainam Basra</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

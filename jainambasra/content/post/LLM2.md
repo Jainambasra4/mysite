@@ -2,7 +2,7 @@
 title: "LLM02:2025 - Sensitive Information Disclosure (OWASP LLM Top 10)"
 description: "Welcome to my new series on AI LLM Red Teaming! Today, let's Understand the Risks and Mitigations with Real-Life Fun Analogies."
 date: 2025-02-09T11:30:03+00:00
-weight: 2
+weight: 999
 cover:
   image: "/post/gpt.gif"
 hideSummary: false

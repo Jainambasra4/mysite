@@ -2,7 +2,7 @@
 title: "🔴 Hacking AI: Tricking the Model into Revealing Secrets! The Art of Prompt Injection (OWASP LLM Top 10)"
 description: "Welcome to my new series on AI LLM Red Teaming! Today, let's talk about Prompt Injection—the cybersecurity nightmare that makes LLMs spill secrets, break rules, and sometimes, even gaslight you."
 date: 2025-02-07T11:30:03+00:00
-weight: 102
+weight: 1000
 cover:
   image: "/post/prompt.jpg"
 hideSummary: false
