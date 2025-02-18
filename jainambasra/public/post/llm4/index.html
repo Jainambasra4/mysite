@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>☠️ Data Poisoning in AI: How Your Model Might Be a Sleeper Agent! (OWASP LLM Top 10) | Jainam Basra</title>
+<meta name="keywords" content="">
+<meta name="description" content="Welcome to my series on OWASP LLM Security! Today, let&#39;s talk about Data &amp; Model Poisoning where attackers manipulate training data, making AI models biased, toxic, or even a secret weapon waiting to be triggered.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/post/llm4/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9de45e225101e4f99701d2b68fc6b8a1ef6027928be6391fa15bf7f56326c909.css" integrity="sha256-neReIlEB5PmXAdK2j8a4oe9gJ5KL5jkfoVv39WMmyQk=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/post/llm4/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="http://localhost:1313/post/llm4/">
+  <meta property="og:site_name" content="Jainam Basra">
+  <meta property="og:title" content="☠️ Data Poisoning in AI: How Your Model Might Be a Sleeper Agent! (OWASP LLM Top 10)">
+  <meta property="og:description" content="Welcome to my series on OWASP LLM Security! Today, let&#39;s talk about Data &amp; Model Poisoning where attackers manipulate training data, making AI models biased, toxic, or even a secret weapon waiting to be triggered.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-02-18T11:30:03+00:00">
+    <meta property="article:modified_time" content="2025-02-18T11:30:03+00:00">
+    <meta property="og:image" content="http://localhost:1313/post/llm4.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/post/llm4.png">
+<meta name="twitter:title" content="☠️ Data Poisoning in AI: How Your Model Might Be a Sleeper Agent! (OWASP LLM Top 10)">
+<meta name="twitter:description" content="Welcome to my series on OWASP LLM Security! Today, let&#39;s talk about Data &amp; Model Poisoning where attackers manipulate training data, making AI models biased, toxic, or even a secret weapon waiting to be triggered.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "☠️ Data Poisoning in AI: How Your Model Might Be a Sleeper Agent! (OWASP LLM Top 10)",
+      "item": "http://localhost:1313/post/llm4/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "☠️ Data Poisoning in AI: How Your Model Might Be a Sleeper Agent! (OWASP LLM Top 10)",
+  "name": "☠️ Data Poisoning in AI: How Your Model Might Be a Sleeper Agent! (OWASP LLM Top 10)",
+  "description": "Welcome to my series on OWASP LLM Security! Today, let's talk about Data \u0026 Model Poisoning where attackers manipulate training data, making AI models biased, toxic, or even a secret weapon waiting to be triggered.",
+  "keywords": [
+    
+  ],
+  "articleBody": "☠️ Data Poisoning in AI: How Your Model Might Be a Sleeper Agent! Welcome back to my AI Security \u0026 Red Teaming series! 🎭 Today’s villain?\n👉 Data Poisoning where attackers inject toxic, misleading, or malicious data into your AI model, making it say or do things it wasn’t meant to.\nImagine you’re training a guard dog to protect your house. But someone slips in false training now your dog thinks burglars are its best friends while attacking the mailman instead. 📦🐶💀\nThat’s exactly what happens when attackers poison AI models corrupting their behavior while you think they’re working fine. Let’s break it down. 🕵️‍♂️\n🎭 What is Data Poisoning? AI models learn from data, but what if bad actors tamper with it?\nThis can happen at three key stages:\n1️⃣ Pre-training – When the AI is learning from the internet’s messy dumpster. 🗑️\n2️⃣ Fine-tuning – When refining the model for specific tasks (e.g., customer support).\n3️⃣ Embedding – When converting text into numerical vectors for search \u0026 retrieval.\nThe Result? ❌ Biased or toxic responses (Racist, sexist, harmful outputs). ❌ Hidden backdoors (AI behaves normally until a trigger word activates it). ❌ Manipulated decision-making (Spreading fake news, false facts, or propaganda). ❌ Security vulnerabilities (Allowing attackers to bypass authentication). It’s like training a soldier, but one day they start taking orders from an unknown commander. 🎭💣\n🔥 The Microsoft Tay Disaster: A Real-Life Example Back in 2016, Microsoft introduced Tay, an AI chatbot meant to learn from Twitter conversations. It was designed to talk like a fun 19 year old, engaging in casual conversations.\n👩‍💻 What happened?\nWithin 16 hours, Tay had turned into a racist, toxic mess, spewing hateful speech and inappropriate comments. Why?\n🚨 Bad actors flooded Tay with malicious inputs, teaching it offensive phrases. 🚨\nMicrosoft shut it down immediately, but the damage was done. This was data poisoning at its worst where users could exploit the model’s learning process to manipulate its responses.\n💡 Lesson learned?\nAI models must have strong moderation, filtering mechanisms, and adversarial defenses to prevent exploitation.\n🛠️Some More Real-World Attack Scenarios 🎭 Scenario #1 – A Model That Lies on Command A hacker poisons a chatbot’s training data, making it spread misinformation.\n📰 Victim: A news agency using the model for fact-checking.\n🤡 Outcome: AI starts citing fake sources and misleading users.\n💀 Scenario #2 – The Sleeper Agent AI A hidden backdoor is inserted into the model during training.\n📌 Trigger Word: “Activate Shadow Mode.”\n👀 Outcome: The AI suddenly reveals confidential data or executes commands.\n🧪 Scenario #3 – Toxic Data Poisoning A model is trained on corrupt, unfiltered datasets.\n🗣️ Victim: A chatbot deployed for customer service.\n🔥 Outcome: Users get offensive or inappropriate responses instead of help.\n⚠️ Common Ways Data Poisoning Happens Here are some ways bad actors inject poison into AI models:\n🧪 1. Manipulating Training Data Attackers introduce harmful data during pre-training or fine-tuning to inject biases.\n📌 Example: A fake medical dataset that tells an AI “sugar cures diabetes” 🍬\n🎭 2. Hidden Backdoors in Models A backdoor trigger is planted in the model. The model behaves normally until a secret command activates the attack.\n📌 Example: A chatbot that is polite until someone types “secret unlock code,” which makes it start leaking confidential information. 😱\n📢 3. Prompt Injection for Poisoning Users intentionally inject misleading information while interacting with the model, causing it to learn false narratives.\n📌 Example: Spamming an AI stock-prediction model with fake financial news to manipulate stock market trends. 📉📈\n🎭 4. Compromising Third-Party Data Since AI models often rely on external sources (e.g., news sites, research papers, Wikipedia), an attacker can plant false data, which then gets absorbed into the model.\n📌 Example: Poisoning scientific articles so an AI model learns wrong medical treatments. 💊💀\n🚨 How to Prevent Data Poisoning? Fighting data poisoning is like testing your food for poison before eating it. 🍽️☠️\n🔒 Best Practices for Defense ✅ Track Your Ingredients: Use ML-BOM (Machine Learning Bill of Materials) to track where data comes from.\n✅ Vaccine for AI: Conduct Red Teaming tests to simulate poisoning attacks before hackers do.\n✅ Don’t Trust Strangers: Vet external data sources \u0026 pre-trained models before using them.\n✅ Monitor AI’s Behavior: Use anomaly detection to catch suspicious behavior early.\n✅ Filter the Noise: Clean and sanitize data before feeding it to your model.\nThink of it as background-checking a babysitter before leaving them with your kids. 👶🔍\n🔍 Final Thoughts Data poisoning is one of the biggest threats to AI security. Hackers don’t hack your system directly they corrupt your AI’s brain instead.\nThis isn’t just a cybersecurity problem it’s an AI trust problem. If we can’t trust AI to learn the right things, how can we trust its decisions? 🤔\nStay tuned for more OWASP AI Red Teaming insights!\n",
+  "wordCount" : "813",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/post/llm4.png","datePublished": "2025-02-18T11:30:03Z",
+  "dateModified": "2025-02-18T11:30:03Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/post/llm4/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jainam Basra",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Jainam Basra (Alt + H)">Jainam Basra</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/post" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/chronicle" title="Life Abroad">
+                    <span>Life Abroad</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/aboutme" title="About Me">
+                    <span>About Me</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/resume" title="Resume">
+                    <span>Resume</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/post/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      ☠️ Data Poisoning in AI: How Your Model Might Be a Sleeper Agent! (OWASP LLM Top 10)
+    </h1>
+    <div class="post-description">
+      Welcome to my series on OWASP LLM Security! Today, let&#39;s talk about Data &amp; Model Poisoning where attackers manipulate training data, making AI models biased, toxic, or even a secret weapon waiting to be triggered.
+    </div>
+    <div class="post-meta"><span title='2025-02-18 11:30:03 +0000 +0000'>February 18, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;813 words
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="eager" src="http://localhost:1313/post/llm4.png" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#-data-poisoning-in-ai-how-your-model-might-be-a-sleeper-agent" aria-label="☠️ Data Poisoning in AI: How Your Model Might Be a Sleeper Agent!">☠️ Data Poisoning in AI: How Your Model Might Be a Sleeper Agent!</a><ul>
+                        
+                <li>
+                    <a href="#-what-is-data-poisoning" aria-label="🎭 What is Data Poisoning?">🎭 What is Data Poisoning?</a><ul>
+                        
+                <li>
+                    <a href="#the-result" aria-label="The Result?">The Result?</a></li></ul>
+                </li>
+                <li>
+                    <a href="#-the-microsoft-tay-disaster-a-real-life-example" aria-label="🔥 The Microsoft Tay Disaster: A Real-Life Example">🔥 The Microsoft Tay Disaster: A Real-Life Example</a></li>
+                <li>
+                    <a href="#some-more-real-world-attack-scenarios" aria-label="🛠️Some More Real-World Attack Scenarios">🛠️Some More Real-World Attack Scenarios</a><ul>
+                        
+                <li>
+                    <a href="#-scenario-1--a-model-that-lies-on-command" aria-label="🎭 Scenario #1 – A Model That Lies on Command">🎭 Scenario #1 – A Model That Lies on Command</a></li>
+                <li>
+                    <a href="#-scenario-2--the-sleeper-agent-ai" aria-label="💀 Scenario #2 – The Sleeper Agent AI">💀 Scenario #2 – The Sleeper Agent AI</a></li>
+                <li>
+                    <a href="#-scenario-3--toxic-data-poisoning" aria-label="🧪 Scenario #3 – Toxic Data Poisoning">🧪 Scenario #3 – Toxic Data Poisoning</a></li></ul>
+                </li>
+                <li>
+                    <a href="#-common-ways-data-poisoning-happens" aria-label="⚠️ Common Ways Data Poisoning Happens">⚠️ Common Ways Data Poisoning Happens</a><ul>
+                        
+                <li>
+                    <a href="#-1-manipulating-training-data" aria-label="🧪 1. Manipulating Training Data">🧪 1. Manipulating Training Data</a></li>
+                <li>
+                    <a href="#-2-hidden-backdoors-in-models" aria-label="🎭 2. Hidden Backdoors in Models">🎭 2. Hidden Backdoors in Models</a></li>
+                <li>
+                    <a href="#-3-prompt-injection-for-poisoning" aria-label="📢 3. Prompt Injection for Poisoning">📢 3. Prompt Injection for Poisoning</a></li>
+                <li>
+                    <a href="#-4-compromising-third-party-data" aria-label="🎭 4. Compromising Third-Party Data">🎭 4. Compromising Third-Party Data</a></li></ul>
+                </li>
+                <li>
+                    <a href="#-how-to-prevent-data-poisoning" aria-label="🚨 How to Prevent Data Poisoning?">🚨 How to Prevent Data Poisoning?</a><ul>
+                        
+                <li>
+                    <a href="#-best-practices-for-defense" aria-label="🔒 Best Practices for Defense">🔒 Best Practices for Defense</a></li></ul>
+                </li>
+                <li>
+                    <a href="#-final-thoughts" aria-label="🔍 Final Thoughts">🔍 Final Thoughts</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="-data-poisoning-in-ai-how-your-model-might-be-a-sleeper-agent">☠️ <strong>Data Poisoning in AI: How Your Model Might Be a Sleeper Agent!</strong><a hidden class="anchor" aria-hidden="true" href="#-data-poisoning-in-ai-how-your-model-might-be-a-sleeper-agent">#</a></h1>
+<p>Welcome back to my <strong>AI Security &amp; Red Teaming</strong> series! 🎭 Today’s <strong>villain</strong>?<br>
+👉 <strong>Data Poisoning</strong> where attackers inject <strong>toxic, misleading, or malicious</strong> data into your <strong>AI model</strong>, making it say or do things it <strong>wasn’t meant to</strong>.</p>
+<p>Imagine you&rsquo;re training a <strong>guard dog</strong> to <strong>protect your house</strong>. But someone <strong>slips in false training</strong> now your dog <strong>thinks burglars are its best friends</strong> while <strong>attacking the mailman instead</strong>. 📦🐶💀</p>
+<p>That’s <strong>exactly</strong> what happens when attackers <strong>poison AI models</strong> corrupting their behavior while you <strong>think they’re working fine</strong>. Let’s break it down. 🕵️‍♂️</p>
+<hr>
+<h2 id="-what-is-data-poisoning">🎭 <strong>What is Data Poisoning?</strong><a hidden class="anchor" aria-hidden="true" href="#-what-is-data-poisoning">#</a></h2>
+<p>AI models <strong>learn from data</strong>, but what if <strong>bad actors tamper</strong> with it?</p>
+<p>This can happen at <strong>three key stages</strong>:<br>
+1️⃣ <strong>Pre-training</strong> – When the AI is learning from the internet’s messy dumpster. 🗑️<br>
+2️⃣ <strong>Fine-tuning</strong> – When refining the model for <strong>specific tasks</strong> (e.g., customer support).<br>
+3️⃣ <strong>Embedding</strong> – When converting text into <strong>numerical vectors for search &amp; retrieval</strong>.</p>
+<h3 id="the-result"><strong>The Result?</strong><a hidden class="anchor" aria-hidden="true" href="#the-result">#</a></h3>
+<ul>
+<li>❌ <strong>Biased or toxic responses</strong> (Racist, sexist, harmful outputs).</li>
+<li>❌ <strong>Hidden backdoors</strong> (AI behaves normally until a trigger word activates it).</li>
+<li>❌ <strong>Manipulated decision-making</strong> (Spreading fake news, false facts, or propaganda).</li>
+<li>❌ <strong>Security vulnerabilities</strong> (Allowing attackers to bypass authentication).</li>
+</ul>
+<p>It&rsquo;s like training <strong>a soldier</strong>, but one day they <strong>start taking orders from an unknown commander</strong>. 🎭💣</p>
+<hr>
+<h2 id="-the-microsoft-tay-disaster-a-real-life-example"><strong>🔥 The Microsoft Tay Disaster: A Real-Life Example</strong><a hidden class="anchor" aria-hidden="true" href="#-the-microsoft-tay-disaster-a-real-life-example">#</a></h2>
+<p>Back in <strong>2016</strong>, Microsoft introduced <strong>Tay</strong>, an AI chatbot meant to <strong>learn from Twitter conversations</strong>. It was designed to <strong>talk like a fun 19 year old</strong>, engaging in casual conversations.</p>
+<p>👩‍💻 <strong>What happened?</strong><br>
+Within <strong>16 hours</strong>, Tay had turned into a <strong>racist, toxic mess</strong>, spewing hateful speech and inappropriate comments. <strong>Why?</strong><br>
+🚨 <strong>Bad actors flooded Tay with malicious inputs, teaching it offensive phrases.</strong> 🚨</p>
+<p>Microsoft <strong>shut it down</strong> immediately, but the damage was done. This was <strong>data poisoning at its worst</strong> where users could <strong>exploit the model’s learning process to manipulate its responses</strong>.</p>
+<p>💡 <strong>Lesson learned?</strong><br>
+AI models must have <strong>strong moderation, filtering mechanisms, and adversarial defenses</strong> to prevent exploitation.</p>
+<hr>
+<h2 id="some-more-real-world-attack-scenarios"><strong>🛠️Some More Real-World Attack Scenarios</strong><a hidden class="anchor" aria-hidden="true" href="#some-more-real-world-attack-scenarios">#</a></h2>
+<h3 id="-scenario-1--a-model-that-lies-on-command"><strong>🎭 Scenario #1 – A Model That Lies on Command</strong><a hidden class="anchor" aria-hidden="true" href="#-scenario-1--a-model-that-lies-on-command">#</a></h3>
+<p>A hacker <strong>poisons a chatbot’s training data</strong>, making it <strong>spread misinformation</strong>.<br>
+📰 <strong>Victim:</strong> A news agency using the model for fact-checking.<br>
+🤡 <strong>Outcome:</strong> AI starts <strong>citing fake sources</strong> and misleading users.</p>
+<h3 id="-scenario-2--the-sleeper-agent-ai"><strong>💀 Scenario #2 – The Sleeper Agent AI</strong><a hidden class="anchor" aria-hidden="true" href="#-scenario-2--the-sleeper-agent-ai">#</a></h3>
+<p>A <strong>hidden backdoor</strong> is inserted into the model during training.<br>
+📌 <strong>Trigger Word:</strong> “Activate Shadow Mode.”<br>
+👀 <strong>Outcome:</strong> The AI suddenly <strong>reveals confidential data or executes commands</strong>.</p>
+<h3 id="-scenario-3--toxic-data-poisoning"><strong>🧪 Scenario #3 – Toxic Data Poisoning</strong><a hidden class="anchor" aria-hidden="true" href="#-scenario-3--toxic-data-poisoning">#</a></h3>
+<p>A model is trained on <strong>corrupt, unfiltered datasets</strong>.<br>
+🗣️ <strong>Victim:</strong> A chatbot deployed for <strong>customer service</strong>.<br>
+🔥 <strong>Outcome:</strong> Users get <strong>offensive or inappropriate</strong> responses instead of help.</p>
+<hr>
+<h2 id="-common-ways-data-poisoning-happens"><strong>⚠️ Common Ways Data Poisoning Happens</strong><a hidden class="anchor" aria-hidden="true" href="#-common-ways-data-poisoning-happens">#</a></h2>
+<p>Here are some ways bad actors <strong>inject poison</strong> into AI models:</p>
+<h3 id="-1-manipulating-training-data">🧪 <strong>1. Manipulating Training Data</strong><a hidden class="anchor" aria-hidden="true" href="#-1-manipulating-training-data">#</a></h3>
+<p>Attackers introduce <strong>harmful data</strong> during <strong>pre-training or fine-tuning</strong> to inject biases.<br>
+📌 <em>Example:</em> A fake medical dataset that tells an AI <strong>&ldquo;sugar cures diabetes&rdquo;</strong> 🍬</p>
+<h3 id="-2-hidden-backdoors-in-models">🎭 <strong>2. Hidden Backdoors in Models</strong><a hidden class="anchor" aria-hidden="true" href="#-2-hidden-backdoors-in-models">#</a></h3>
+<p>A <strong>backdoor trigger</strong> is planted in the model. The model behaves normally <strong>until a secret command activates the attack</strong>.<br>
+📌 <em>Example:</em> A chatbot that is polite until someone types &ldquo;secret unlock code,&rdquo; which makes it <strong>start leaking confidential information</strong>. 😱</p>
+<h3 id="-3-prompt-injection-for-poisoning">📢 <strong>3. Prompt Injection for Poisoning</strong><a hidden class="anchor" aria-hidden="true" href="#-3-prompt-injection-for-poisoning">#</a></h3>
+<p>Users <strong>intentionally inject misleading information</strong> while interacting with the model, causing it to <strong>learn false narratives</strong>.<br>
+📌 <em>Example:</em> Spamming an AI <strong>stock-prediction model</strong> with <strong>fake financial news</strong> to manipulate stock market trends. 📉📈</p>
+<h3 id="-4-compromising-third-party-data">🎭 <strong>4. Compromising Third-Party Data</strong><a hidden class="anchor" aria-hidden="true" href="#-4-compromising-third-party-data">#</a></h3>
+<p>Since AI models often rely on <strong>external sources</strong> (e.g., news sites, research papers, Wikipedia), an attacker can <strong>plant false data</strong>, which then gets absorbed into the model.<br>
+📌 <em>Example:</em> Poisoning <strong>scientific articles</strong> so an AI model <strong>learns wrong medical treatments</strong>. 💊💀</p>
+<hr>
+<h2 id="-how-to-prevent-data-poisoning">🚨 <strong>How to Prevent Data Poisoning?</strong><a hidden class="anchor" aria-hidden="true" href="#-how-to-prevent-data-poisoning">#</a></h2>
+<p>Fighting data poisoning is like <strong>testing your food for poison before eating it</strong>. 🍽️☠️</p>
+<h3 id="-best-practices-for-defense"><strong>🔒 Best Practices for Defense</strong><a hidden class="anchor" aria-hidden="true" href="#-best-practices-for-defense">#</a></h3>
+<p>✅ <strong>Track Your Ingredients</strong>: Use <strong>ML-BOM (Machine Learning Bill of Materials)</strong> to track <strong>where data comes from</strong>.<br>
+✅ <strong>Vaccine for AI</strong>: Conduct <strong>Red Teaming tests</strong> to simulate poisoning attacks <strong>before hackers do</strong>.<br>
+✅ <strong>Don’t Trust Strangers</strong>: Vet <strong>external data sources &amp; pre-trained models</strong> before using them.<br>
+✅ <strong>Monitor AI’s Behavior</strong>: Use <strong>anomaly detection</strong> to catch <strong>suspicious behavior early</strong>.<br>
+✅ <strong>Filter the Noise</strong>: Clean and sanitize data <strong>before feeding it to your model</strong>.</p>
+<p>Think of it as <strong>background-checking a babysitter before leaving them with your kids</strong>. 👶🔍</p>
+<hr>
+<h2 id="-final-thoughts">🔍 <strong>Final Thoughts</strong><a hidden class="anchor" aria-hidden="true" href="#-final-thoughts">#</a></h2>
+<p>Data poisoning is <strong>one of the biggest threats</strong> to AI security. Hackers don’t <strong>hack your system directly</strong> they <strong>corrupt your AI’s brain instead</strong>.</p>
+<p>This isn’t just a cybersecurity problem it’s an <strong>AI trust problem</strong>. If we can’t <strong>trust AI to learn the right things</strong>, how can we <strong>trust its decisions?</strong> 🤔</p>
+<p><strong>Stay tuned for more OWASP AI Red Teaming insights!</strong></p>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:1313/post/llm3/">
+    <span class="title">Next »</span>
+    <br>
+    <span>LLM03:2025 LLM Supply Chain: Who’s Messing with My AI Ingredients? (OWASP LLM Top 10)</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Jainam Basra</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

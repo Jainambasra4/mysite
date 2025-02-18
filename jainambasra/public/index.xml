@@ -6,7 +6,7 @@
     <description>Recent content on Jainam Basra</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 11 Feb 2025 11:30:03 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 18 Feb 2025 11:30:03 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MS Cybersecurity: My Journey from India to the U.S. 🎓🔐</title>
@@ -21,6 +21,13 @@
       <pubDate>Fri, 07 Feb 2025 11:30:03 +0000</pubDate>
       <guid>http://localhost:1313/chronicle/chronicletwo/</guid>
       <description>Worried about safety in Baltimore as a student? Here&amp;#39;s my personal take on living, studying, and thriving in the city.</description>
+    </item>
+    <item>
+      <title>☠️ Data Poisoning in AI: How Your Model Might Be a Sleeper Agent! (OWASP LLM Top 10)</title>
+      <link>http://localhost:1313/post/llm4/</link>
+      <pubDate>Tue, 18 Feb 2025 11:30:03 +0000</pubDate>
+      <guid>http://localhost:1313/post/llm4/</guid>
+      <description>Welcome to my series on OWASP LLM Security! Today, let&amp;#39;s talk about Data &amp;amp; Model Poisoning where attackers manipulate training data, making AI models biased, toxic, or even a secret weapon waiting to be triggered.</description>
     </item>
     <item>
       <title>LLM03:2025 LLM Supply Chain: Who’s Messing with My AI Ingredients? (OWASP LLM Top 10)</title>
