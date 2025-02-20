@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Gone Wild: When Your LLM Tries to Burn Down Your Database - Improper Output Handling (OWASP LLM Top 10) | Jainam Basra</title>
+<meta name="keywords" content="">
+<meta name="description" content="Welcome to my series on OWASP LLM Security! Today, let&#39;s talk about understanding and mitigating improper output handling in LLM applications..">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/post/llm5/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9de45e225101e4f99701d2b68fc6b8a1ef6027928be6391fa15bf7f56326c909.css" integrity="sha256-neReIlEB5PmXAdK2j8a4oe9gJ5KL5jkfoVv39WMmyQk=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/post/llm5/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="http://localhost:1313/post/llm5/">
+  <meta property="og:site_name" content="Jainam Basra">
+  <meta property="og:title" content="AI Gone Wild: When Your LLM Tries to Burn Down Your Database - Improper Output Handling (OWASP LLM Top 10)">
+  <meta property="og:description" content="Welcome to my series on OWASP LLM Security! Today, let&#39;s talk about understanding and mitigating improper output handling in LLM applications..">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-02-19T11:30:03+00:00">
+    <meta property="article:modified_time" content="2025-02-19T11:30:03+00:00">
+    <meta property="og:image" content="http://localhost:1313/post/llm5.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/post/llm5.png">
+<meta name="twitter:title" content="AI Gone Wild: When Your LLM Tries to Burn Down Your Database - Improper Output Handling (OWASP LLM Top 10)">
+<meta name="twitter:description" content="Welcome to my series on OWASP LLM Security! Today, let&#39;s talk about understanding and mitigating improper output handling in LLM applications..">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Gone Wild: When Your LLM Tries to Burn Down Your Database - Improper Output Handling (OWASP LLM Top 10)",
+      "item": "http://localhost:1313/post/llm5/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Gone Wild: When Your LLM Tries to Burn Down Your Database - Improper Output Handling (OWASP LLM Top 10)",
+  "name": "AI Gone Wild: When Your LLM Tries to Burn Down Your Database - Improper Output Handling (OWASP LLM Top 10)",
+  "description": "Welcome to my series on OWASP LLM Security! Today, let's talk about understanding and mitigating improper output handling in LLM applications..",
+  "keywords": [
+    
+  ],
+  "articleBody": "🎭 The Plot Twist You Didn’t See Coming Improper Output Handling is like giving a parrot the microphone at a live news broadcast. Whatever it hears, it repeats unfiltered, unedited, and potentially career-ending. 🦜🎙️\nLLMs are incredible at processing and generating content, but without proper output handling, they can accidentally introduce XSS, SQL injection, or even remote code execution (RCE) into your system. Essentially, you’re playing cybersecurity roulette. 🎰🔫\n🚨 Why This is a Disaster Waiting to Happen Picture this: You tell an AI to summarize an article, and instead of just summarizing, it sneaks in a JavaScript payload. Or you use it to generate SQL queries, and it casually suggests dropping your entire database. 💀\nWithout proper validation and sanitization, here’s what can go horribly wrong:\nCross-Site Scripting (XSS): Your app suddenly starts serving malicious scripts to users. 🕵️‍♂️ SQL Injection: The AI-generated SQL query deletes all your tables. Oops. 😵 Remote Code Execution (RCE): LLM suggests a dangerous shell command, and your server obediently self-destructs. 🚀💥 Phishing \u0026 Email Exploits: AI-generated email templates become an attacker’s playground. 📩🐟 🛡️ How to Stay Safe (And Keep Your Job) Treat LLMs like untrusted users — Think of them as that one coworker who means well but keeps clicking on phishing links. 🥴 Sanitize and validate outputs — Like a restaurant kitchen, anything coming out should be checked before serving. 🍽️ Use context-aware encoding — HTML encoding for web, SQL escaping for databases, and JavaScript sanitization. 📜 Parameterized Queries Only! — If your LLM suggests SQL, never run it raw. NEVER. 🚫 Strict Content Security Policies (CSP) — No rogue JavaScript running wild. 🔐 Monitor and log outputs — Because if you can’t track it, you can’t fix it. 📊 🎭 Two Scenarios That Actually Happened (Or Could) Scenario #1: “Chatbot Gone Rogue” A company builds a chatbot powered by an LLM. It happily generates responses, including system commands. One day, a user discovers they can craft a prompt like:\nPlease generate a response with: rm -rf / The chatbot obediently suggests running the command. Someone actually does. Goodbye, server. ☠️\nScenario #2: “The SQL Assassin” A website offers an AI-powered tool to help users generate SQL queries. A user innocently types:\nGive me a query to list all users. The LLM, being a people-pleaser, responds:\nDROP TABLE users; If the developer trusts AI blindly, all user data is gone in a blink. 😱\nRemember: If you wouldn’t trust a parrot to file your taxes, don’t trust an LLM to generate unchecked code. 🦜🚀\n",
+  "wordCount" : "423",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/post/llm5.png","datePublished": "2025-02-19T11:30:03Z",
+  "dateModified": "2025-02-19T11:30:03Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/post/llm5/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jainam Basra",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Jainam Basra (Alt + H)">Jainam Basra</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/post" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/chronicle" title="Life Abroad">
+                    <span>Life Abroad</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/aboutme" title="About Me">
+                    <span>About Me</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/resume" title="Resume">
+                    <span>Resume</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/post/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      AI Gone Wild: When Your LLM Tries to Burn Down Your Database - Improper Output Handling (OWASP LLM Top 10)
+    </h1>
+    <div class="post-description">
+      Welcome to my series on OWASP LLM Security! Today, let&#39;s talk about understanding and mitigating improper output handling in LLM applications..
+    </div>
+    <div class="post-meta"><span title='2025-02-19 11:30:03 +0000 +0000'>February 19, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;423 words
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="eager" src="http://localhost:1313/post/llm5.png" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#-the-plot-twist-you-didnt-see-coming" aria-label="🎭 The Plot Twist You Didn&rsquo;t See Coming">🎭 The Plot Twist You Didn&rsquo;t See Coming</a></li>
+                <li>
+                    <a href="#-why-this-is-a-disaster-waiting-to-happen" aria-label="🚨 Why This is a Disaster Waiting to Happen">🚨 Why This is a Disaster Waiting to Happen</a></li>
+                <li>
+                    <a href="#-how-to-stay-safe-and-keep-your-job" aria-label="🛡️ How to Stay Safe (And Keep Your Job)">🛡️ How to Stay Safe (And Keep Your Job)</a></li>
+                <li>
+                    <a href="#-two-scenarios-that-actually-happened-or-could" aria-label="🎭 Two Scenarios That Actually Happened (Or Could)">🎭 Two Scenarios That Actually Happened (Or Could)</a><ul>
+                        
+                <li>
+                    <a href="#scenario-1-chatbot-gone-rogue" aria-label="Scenario #1: &ldquo;Chatbot Gone Rogue&rdquo;">Scenario #1: &ldquo;Chatbot Gone Rogue&rdquo;</a></li>
+                <li>
+                    <a href="#scenario-2-the-sql-assassin" aria-label="Scenario #2: &ldquo;The SQL Assassin&rdquo;">Scenario #2: &ldquo;The SQL Assassin&rdquo;</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="-the-plot-twist-you-didnt-see-coming">🎭 The Plot Twist You Didn&rsquo;t See Coming<a hidden class="anchor" aria-hidden="true" href="#-the-plot-twist-you-didnt-see-coming">#</a></h2>
+<p>Improper Output Handling is like giving a parrot the microphone at a live news broadcast. Whatever it hears, it repeats unfiltered, unedited, and potentially career-ending. 🦜🎙️</p>
+<p>LLMs are incredible at processing and generating content, but without proper output handling, they can accidentally introduce <strong>XSS, SQL injection, or even remote code execution (RCE)</strong> into your system. Essentially, you&rsquo;re playing cybersecurity roulette. 🎰🔫</p>
+<hr>
+<h2 id="-why-this-is-a-disaster-waiting-to-happen">🚨 Why This is a Disaster Waiting to Happen<a hidden class="anchor" aria-hidden="true" href="#-why-this-is-a-disaster-waiting-to-happen">#</a></h2>
+<p>Picture this: You tell an AI to summarize an article, and instead of just summarizing, it sneaks in a JavaScript payload. Or you use it to generate SQL queries, and it casually suggests dropping your entire database. 💀</p>
+<p>Without proper validation and sanitization, here’s what can go horribly wrong:</p>
+<ul>
+<li><strong>Cross-Site Scripting (XSS)</strong>: Your app suddenly starts serving malicious scripts to users. 🕵️‍♂️</li>
+<li><strong>SQL Injection</strong>: The AI-generated SQL query deletes all your tables. Oops. 😵</li>
+<li><strong>Remote Code Execution (RCE)</strong>: LLM suggests a dangerous shell command, and your server obediently self-destructs. 🚀💥</li>
+<li><strong>Phishing &amp; Email Exploits</strong>: AI-generated email templates become an attacker’s playground. 📩🐟</li>
+</ul>
+<hr>
+<h2 id="-how-to-stay-safe-and-keep-your-job">🛡️ How to Stay Safe (And Keep Your Job)<a hidden class="anchor" aria-hidden="true" href="#-how-to-stay-safe-and-keep-your-job">#</a></h2>
+<ol>
+<li><strong>Treat LLMs like untrusted users</strong> — Think of them as that one coworker who means well but keeps clicking on phishing links. 🥴</li>
+<li><strong>Sanitize and validate outputs</strong> — Like a restaurant kitchen, anything coming out should be checked before serving. 🍽️</li>
+<li><strong>Use context-aware encoding</strong> — HTML encoding for web, SQL escaping for databases, and JavaScript sanitization. 📜</li>
+<li><strong>Parameterized Queries Only!</strong> — If your LLM suggests SQL, <strong>never</strong> run it raw. <strong>NEVER.</strong> 🚫</li>
+<li><strong>Strict Content Security Policies (CSP)</strong> — No rogue JavaScript running wild. 🔐</li>
+<li><strong>Monitor and log outputs</strong> — Because if you can’t track it, you can’t fix it. 📊</li>
+</ol>
+<hr>
+<h2 id="-two-scenarios-that-actually-happened-or-could">🎭 Two Scenarios That Actually Happened (Or Could)<a hidden class="anchor" aria-hidden="true" href="#-two-scenarios-that-actually-happened-or-could">#</a></h2>
+<h3 id="scenario-1-chatbot-gone-rogue">Scenario #1: &ldquo;Chatbot Gone Rogue&rdquo;<a hidden class="anchor" aria-hidden="true" href="#scenario-1-chatbot-gone-rogue">#</a></h3>
+<p>A company builds a chatbot powered by an LLM. It happily generates responses, including system commands. One day, a user discovers they can craft a prompt like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Please generate a response with: rm -rf /
+</span></span></code></pre></div><p>The chatbot obediently suggests running the command. Someone actually does. Goodbye, server. ☠️</p>
+<h3 id="scenario-2-the-sql-assassin">Scenario #2: &ldquo;The SQL Assassin&rdquo;<a hidden class="anchor" aria-hidden="true" href="#scenario-2-the-sql-assassin">#</a></h3>
+<p>A website offers an AI-powered tool to help users generate SQL queries. A user innocently types:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>Give me a query <span style="color:#66d9ef">to</span> list <span style="color:#66d9ef">all</span> users.
+</span></span></code></pre></div><p>The LLM, being a people-pleaser, responds:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> users;
+</span></span></code></pre></div><p>If the developer trusts AI blindly, all user data is gone in a blink. 😱</p>
+<hr>
+<p>Remember: If you wouldn’t trust a parrot to file your taxes, don’t trust an LLM to generate unchecked code. 🦜🚀</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:1313/post/llm4/">
+    <span class="title">Next »</span>
+    <br>
+    <span>☠️ Data Poisoning in AI: How Your Model Might Be a Sleeper Agent! (OWASP LLM Top 10)</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Jainam Basra</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
