@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Jainam Basra</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 19 Feb 2025 11:30:03 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 14 Mar 2025 11:30:03 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The AI Problem You Didn’t Know You Had - Excessive Agency (OWASP LLM Top 10)</title>
+      <link>http://localhost:1313/post/llm6/</link>
+      <pubDate>Fri, 14 Mar 2025 11:30:03 +0000</pubDate>
+      <guid>http://localhost:1313/post/llm6/</guid>
+      <description>Welcome to my series on OWASP LLM Security! Today, let&amp;#39;s talk about understanding and mitigating excessice agency in LLM applications.</description>
+    </item>
     <item>
       <title>AI Gone Wild: When Your LLM Tries to Burn Down Your Database - Improper Output Handling (OWASP LLM Top 10)</title>
       <link>http://localhost:1313/post/llm5/</link>
