@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Jainam Basra</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Apr 2025 11:30:03 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 23 Apr 2025 11:30:03 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>When Your AI Starts Mixing Things Up - Vector and Embedding Weaknesses (OWASP LLM Top 10)</title>
+      <link>http://localhost:1313/post/llm8/</link>
+      <pubDate>Wed, 23 Apr 2025 11:30:03 +0000</pubDate>
+      <guid>http://localhost:1313/post/llm8/</guid>
+      <description>Welcome to my series on OWASP LLM Security! Today, let&amp;#39;s talk about understanding and mitigating Vector and Embedding Weaknesses in LLM applications.</description>
+    </item>
     <item>
       <title>When Your AI Blabs Like a Toddler - System Prompt Leakage (OWASP LLM Top 10)</title>
       <link>http://localhost:1313/post/llm7/</link>
