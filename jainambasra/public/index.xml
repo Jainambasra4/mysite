@@ -6,7 +6,7 @@
     <description>Recent content on Jainam Basra</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Apr 2025 11:30:03 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 May 2025 11:30:03 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MS Cybersecurity: My Journey from India to the U.S. 🎓🔐</title>
@@ -28,6 +28,13 @@
       <pubDate>Fri, 14 Mar 2025 11:30:03 +0000</pubDate>
       <guid>http://localhost:1313/chronicle/chroniclethree/</guid>
       <description>To the world, studying in the U.S. looks like a dream. But behind this lies sacrifices, sleepless nights, and silent struggles no one talks about.</description>
+    </item>
+    <item>
+      <title>I Let ChatGPT Loose at a Buffet and It Ate My Cloud Budget (OWASP LLM Top 10)</title>
+      <link>http://localhost:1313/post/llm10/</link>
+      <pubDate>Thu, 08 May 2025 11:30:03 +0000</pubDate>
+      <guid>http://localhost:1313/post/llm10/</guid>
+      <description>Welcome to my series on OWASP LLM Security! Today, let&amp;#39;s talk about Unbounded Consumption in LLM applications.</description>
     </item>
     <item>
       <title>I Asked My AI How to Standout in a Group Meeting, and It Told Me to Interrupt Everyone with Have You Tried Yoga? - Misinformation (OWASP LLM Top 10)</title>

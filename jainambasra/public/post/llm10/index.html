@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>I Let ChatGPT Loose at a Buffet and It Ate My Cloud Budget (OWASP LLM Top 10) | Jainam Basra</title>
+<meta name="keywords" content="">
+<meta name="description" content="Welcome to my series on OWASP LLM Security! Today, let&#39;s talk about Unbounded Consumption in LLM applications.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/post/llm10/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9de45e225101e4f99701d2b68fc6b8a1ef6027928be6391fa15bf7f56326c909.css" integrity="sha256-neReIlEB5PmXAdK2j8a4oe9gJ5KL5jkfoVv39WMmyQk=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/post/llm10/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="http://localhost:1313/post/llm10/">
+  <meta property="og:site_name" content="Jainam Basra">
+  <meta property="og:title" content="I Let ChatGPT Loose at a Buffet and It Ate My Cloud Budget (OWASP LLM Top 10)">
+  <meta property="og:description" content="Welcome to my series on OWASP LLM Security! Today, let&#39;s talk about Unbounded Consumption in LLM applications.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-05-08T11:30:03+00:00">
+    <meta property="article:modified_time" content="2025-05-08T11:30:03+00:00">
+    <meta property="og:image" content="http://localhost:1313/post/llm10.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://localhost:1313/post/llm10.jpg">
+<meta name="twitter:title" content="I Let ChatGPT Loose at a Buffet and It Ate My Cloud Budget (OWASP LLM Top 10)">
+<meta name="twitter:description" content="Welcome to my series on OWASP LLM Security! Today, let&#39;s talk about Unbounded Consumption in LLM applications.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "http://localhost:1313/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "I Let ChatGPT Loose at a Buffet and It Ate My Cloud Budget (OWASP LLM Top 10)",
+      "item": "http://localhost:1313/post/llm10/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "I Let ChatGPT Loose at a Buffet and It Ate My Cloud Budget (OWASP LLM Top 10)",
+  "name": "I Let ChatGPT Loose at a Buffet and It Ate My Cloud Budget (OWASP LLM Top 10)",
+  "description": "Welcome to my series on OWASP LLM Security! Today, let's talk about Unbounded Consumption in LLM applications.",
+  "keywords": [
+    
+  ],
+  "articleBody": "Ever handed your AI a plate at an all-you-can-eat buffet and whispered, “Go wild”?\nBad idea. Here’s what happened next and why it’s the perfect metaphor for unbounded input consumption in LLMs.\n🧠🍕 Unbounded Consumption: The Buffet That Never Ends You know when you walk into a buffet and tell yourself, “Just a small plate, nothing wild”?\nCut to: you’re on your third round of sushi, mac \u0026 cheese, and something suspiciously on fire.\nNow your stomach is in full blown “what have you done” mode.\nThat’s Unbounded Consumption.\nYou could stop… but will you?\nNeither will the LLM when left unchecked.\n⚠️ Bad Buffet Moves (aka Vulnerabilities) Overflowing Plates\nLike stacking 15 spring rolls on a saucer. The model does the same with input until it’s groaning.\nMystery Meat Requests\nYou didn’t order the glowing gelatin blob, but now you’re debugging it. Surprise!\nUnlimited Refills\n“Would you like more?” No. It brings more anyway. That’s your LLM with no rate limits.\nToo Much Spice\nYou clicked on “🌶️🌶️🌶️ Ultimate Death Curry” and now everything’s melting.\nYep, that’s a red-hot token stream with no backoff.\nDessert Overload\nIt started with a cookie. Ended with a diabetic coma.\nThat’s what happens when your model just keeps… sampling.\n🛠️ How to Avoid the Buffet of Regret (aka Mitigations) Plate Size Control → Input validation. You can’t pile sushi on a shot glass. Portion Control → Throttle your calls. No one’s serving caviar with a shovel. Check the Menu First → Rate limiting. Curate what goes in. Spicy Warnings → Monitor your resource burn. Know your budget. Dessert First? → Fine. But enable graceful degradation — before it all crashes into a pudding wall. 💥 Attack Scenarios (aka What Happens When You Don’t) Uncontrolled Buffet Chaos: Every dish spills. Every log explodes. Unending Refill Requests: API calls like waiters that never leave. Too Many Side Dishes: Your RAM’s full of salad metaphors. Overcomplicated Flavors: Chocolate + pickles + regex = support ticket. The Sneaky “All You Can Eat” Special:\nModel theft dressed like a free lunch. Congrats, your brain is now the entrée. 🧃 Buffet Wisdom for the Brave Know when to stop. Not every token’s tasty. Pace yourself. Latency isn’t always lag sometimes it’s indigestion. Set boundaries. Yes, even for a chatbot. Choose wisely. Even buffet pros leave the Jell-O alone. ",
+  "wordCount" : "389",
+  "inLanguage": "en",
+  "image":"http://localhost:1313/post/llm10.jpg","datePublished": "2025-05-08T11:30:03Z",
+  "dateModified": "2025-05-08T11:30:03Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:1313/post/llm10/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jainam Basra",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:1313/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Jainam Basra (Alt + H)">Jainam Basra</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/post" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/chronicle" title="Life Abroad">
+                    <span>Life Abroad</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/aboutme" title="About Me">
+                    <span>About Me</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/resume" title="Resume">
+                    <span>Resume</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/post/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      I Let ChatGPT Loose at a Buffet and It Ate My Cloud Budget (OWASP LLM Top 10)
+    </h1>
+    <div class="post-description">
+      Welcome to my series on OWASP LLM Security! Today, let&#39;s talk about Unbounded Consumption in LLM applications.
+    </div>
+    <div class="post-meta"><span title='2025-05-08 11:30:03 +0000 +0000'>May 8, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;389 words
+
+</div>
+  </header> 
+<figure class="entry-cover"><img loading="eager" src="http://localhost:1313/post/llm10.jpg" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#-unbounded-consumption-the-buffet-that-never-ends" aria-label="🧠🍕 Unbounded Consumption: The Buffet That Never Ends">🧠🍕 Unbounded Consumption: The Buffet That Never Ends</a></li>
+                <li>
+                    <a href="#-bad-buffet-moves-aka-vulnerabilities" aria-label="⚠️ Bad Buffet Moves (aka Vulnerabilities)">⚠️ Bad Buffet Moves (aka Vulnerabilities)</a></li>
+                <li>
+                    <a href="#-how-to-avoid-the-buffet-of-regret-aka-mitigations" aria-label="🛠️ How to Avoid the Buffet of Regret (aka Mitigations)">🛠️ How to Avoid the Buffet of Regret (aka Mitigations)</a></li>
+                <li>
+                    <a href="#-attack-scenarios-aka-what-happens-when-you-dont" aria-label="💥 Attack Scenarios (aka What Happens When You Don’t)">💥 Attack Scenarios (aka What Happens When You Don’t)</a></li>
+                <li>
+                    <a href="#-buffet-wisdom-for-the-brave" aria-label="🧃 Buffet Wisdom for the Brave">🧃 Buffet Wisdom for the Brave</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>Ever handed your AI a plate at an all-you-can-eat buffet and whispered, “Go wild”?<br>
+Bad idea. Here&rsquo;s what happened next and why it&rsquo;s the perfect metaphor for <strong>unbounded input consumption</strong> in LLMs.</p>
+<hr>
+<h2 id="-unbounded-consumption-the-buffet-that-never-ends">🧠🍕 Unbounded Consumption: The Buffet That Never Ends<a hidden class="anchor" aria-hidden="true" href="#-unbounded-consumption-the-buffet-that-never-ends">#</a></h2>
+<p>You know when you walk into a buffet and tell yourself, “Just a small plate, nothing wild”?<br>
+Cut to: you&rsquo;re on your third round of sushi, mac &amp; cheese, and something suspiciously on fire.<br>
+Now your stomach is in full blown <strong>“what have you done”</strong> mode.</p>
+<p>That’s <strong>Unbounded Consumption</strong>.<br>
+You <em>could</em> stop&hellip; but will you?<br>
+Neither will the LLM when left unchecked.</p>
+<hr>
+<h2 id="-bad-buffet-moves-aka-vulnerabilities">⚠️ Bad Buffet Moves (aka Vulnerabilities)<a hidden class="anchor" aria-hidden="true" href="#-bad-buffet-moves-aka-vulnerabilities">#</a></h2>
+<ol>
+<li>
+<p><strong>Overflowing Plates</strong><br>
+Like stacking 15 spring rolls on a saucer. The model does the same with input until it’s groaning.</p>
+</li>
+<li>
+<p><strong>Mystery Meat Requests</strong><br>
+You didn’t order the glowing gelatin blob, but now you’re debugging it. Surprise!</p>
+</li>
+<li>
+<p><strong>Unlimited Refills</strong><br>
+“Would you like more?” No. It brings more anyway. That’s your LLM with no rate limits.</p>
+</li>
+<li>
+<p><strong>Too Much Spice</strong><br>
+You clicked on “🌶️🌶️🌶️ Ultimate Death Curry” and now everything’s melting.<br>
+Yep, that’s a red-hot token stream with no backoff.</p>
+</li>
+<li>
+<p><strong>Dessert Overload</strong><br>
+It started with a cookie. Ended with a diabetic coma.<br>
+That’s what happens when your model just keeps&hellip; sampling.</p>
+</li>
+</ol>
+<hr>
+<h2 id="-how-to-avoid-the-buffet-of-regret-aka-mitigations">🛠️ How to Avoid the Buffet of Regret (aka Mitigations)<a hidden class="anchor" aria-hidden="true" href="#-how-to-avoid-the-buffet-of-regret-aka-mitigations">#</a></h2>
+<ol>
+<li><strong>Plate Size Control</strong> → Input validation. You can&rsquo;t pile sushi on a shot glass.</li>
+<li><strong>Portion Control</strong> → Throttle your calls. No one&rsquo;s serving caviar with a shovel.</li>
+<li><strong>Check the Menu First</strong> → Rate limiting. Curate what goes in.</li>
+<li><strong>Spicy Warnings</strong> → Monitor your resource burn. Know your budget.</li>
+<li><strong>Dessert First?</strong> → Fine. But enable graceful degradation — before it all crashes into a pudding wall.</li>
+</ol>
+<hr>
+<h2 id="-attack-scenarios-aka-what-happens-when-you-dont">💥 Attack Scenarios (aka What Happens When You Don’t)<a hidden class="anchor" aria-hidden="true" href="#-attack-scenarios-aka-what-happens-when-you-dont">#</a></h2>
+<ul>
+<li><strong>Uncontrolled Buffet Chaos</strong>: Every dish spills. Every log explodes.</li>
+<li><strong>Unending Refill Requests</strong>: API calls like waiters that <em>never</em> leave.</li>
+<li><strong>Too Many Side Dishes</strong>: Your RAM’s full of salad metaphors.</li>
+<li><strong>Overcomplicated Flavors</strong>: Chocolate + pickles + regex = support ticket.</li>
+<li><strong>The Sneaky “All You Can Eat” Special</strong>:<br>
+Model theft dressed like a free lunch. Congrats, your brain is now the entrée.</li>
+</ul>
+<hr>
+<h2 id="-buffet-wisdom-for-the-brave">🧃 Buffet Wisdom for the Brave<a hidden class="anchor" aria-hidden="true" href="#-buffet-wisdom-for-the-brave">#</a></h2>
+<ul>
+<li>Know when to stop. Not every token’s tasty.</li>
+<li>Pace yourself. Latency isn’t always lag sometimes it’s indigestion.</li>
+<li>Set boundaries. Yes, even for a chatbot.</li>
+<li>Choose wisely. Even buffet pros leave the Jell-O alone.</li>
+</ul>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:1313/post/llm9/">
+    <span class="title">Next »</span>
+    <br>
+    <span>I Asked My AI How to Standout in a Group Meeting, and It Told Me to Interrupt Everyone with Have You Tried Yoga? - Misinformation (OWASP LLM Top 10)</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Jainam Basra</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
